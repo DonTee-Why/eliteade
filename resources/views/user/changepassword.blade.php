@@ -55,7 +55,7 @@
                                     <h5 class="text-{{$text}}">Confirm Password*:</h5>
                                     <input type="password" name="password_confirmation" class="text-{{$text}} bg-{{$bg}} form-control" required>
                                 </div> <br>
-                                    <input type="submit" class="btn btn-primary" value="Update Details">
+                                    <input type="submit" class="btn btn-primary" value="Update Password">
                                     
                                 <input type="hidden" name="id" value="{{Auth::user()->id}}">
                                 <input type="hidden" name="current_password" value="{{Auth::user()->password}}">

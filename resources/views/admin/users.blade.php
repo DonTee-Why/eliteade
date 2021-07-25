@@ -72,7 +72,10 @@ if (Auth('admin')->User()->dashboard_style == "light") {
 									</thead> 
 									<tbody> 
 										@foreach($users as $list)
+										
 										<tr> 
+											{{-- @if (Auth('admin')->User()->type == "Agent" || $list->agent_id == (Auth('admin')->User()->id) --}}
+
 											<th scope="row">{{$list->id}}</th>
 											<td>{{$settings->currency}}{{$list->account_bal}}</td> 
 											<td>{{$list->name}}</td> 
@@ -92,8 +95,10 @@ if (Auth('admin')->User()->dashboard_style == "light") {
 													Actions
 													</a>
 												<div class="dropdown-menu bg-{{Auth('admin')->User()->dashboard_style}}" aria-labelledby="dropdownMenuLink">
-													<a class="m-1 btn btn-info btn-sm" href="{{ url('admin/dashboard/add-wallet') }}/{{$list->id}}">Add Wallet Address</a>
-													{{-- <a href="#"  data-toggle="modal" data-target="#addWalletModal{{$list->id}}" class="m-1 btn btn-dark btn-sm">Add Wallet Address</a> --}}
+													{{-- <a class="m-1 btn btn-info btn-sm" href="{{ url('admin/dashboard/add-wallet') }}/{{$list->id}}">Add Wallet Address</a> --}}
+													<a href="#" data-toggle="modal" data-target="#assignAgent{{$list->id}}" class="m-1 btn btn-secondary btn-sm">Asssign Agent</a>
+													
+													<a href="#"  data-toggle="modal" data-target="#addWalletModal{{$list->id}}" class="m-1 btn btn-info btn-sm">Add Wallet Address</a>
 
 													<a class="m-1 btn btn-info btn-sm" href="{{ url('admin/dashboard/user-wallet') }}/{{$list->id}}">See Wallet</a>
 

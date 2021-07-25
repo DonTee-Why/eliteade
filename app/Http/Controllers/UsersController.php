@@ -233,7 +233,7 @@ class UsersController extends Controller
           'account_number' =>$request['account_no'], 
           'btc_address' =>$request['btc_address'], 
           'eth_address' =>$request['eth_address'], 
-          'ltc_address' =>$request['ltc_address'], 
+          'usdt_address' =>$request['usdt_address'], 
           ]);
           return redirect()->back()
           ->with('message', 'Withdrawal Info updated Sucessfully');

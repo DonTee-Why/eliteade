@@ -47,7 +47,8 @@ if (Auth('admin')->User()->dashboard_style == "light") {
 							<div class="accordion accordion-{{$text}} ">
 								<form method="post" action="{{route('updateacount')}}">
 								<!--............................... collapse one -->
-								
+								<input type="hidden" name="id" value="{{$list->id}}">
+								<input type="hidden" name="_token" value="{{ csrf_token() }}">
 									<!--............................... collapse two -->
 								<div class="card">
 									<div class="card-header bg-{{$bgmenu}}" id="headingTwo" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
@@ -102,8 +103,8 @@ if (Auth('admin')->User()->dashboard_style == "light") {
 									<div id="collapseFour" class="collapse show" aria-labelledby="headingFour" data-parent="#accordion">
 										<div class="card-body bg-{{$bg}} shadow">
 											<div class="form-group">
-												<h5 class="text-{{$text}} bg-{{$bg}}">LTC ADDRESS</h5>
-												<input type="text" name="ltc_address" value="{{Auth::user()->ltc_address}}"  class="form-control text-{{$text}} bg-{{$bg}}" placeholder="Litcoin Address" readonly>
+												<h5 class="text-{{$text}} bg-{{$bg}}">Usdt ADDRESS</h5>
+												<input type="text" name="usdt_address" value="{{Auth::user()->usdt_address}}"  class="form-control text-{{$text}} bg-{{$bg}}" placeholder="Usdt Address">
 											</div>
 										</div>
 									</div>
@@ -111,10 +112,11 @@ if (Auth('admin')->User()->dashboard_style == "light") {
 								</div>
 								
 								<!--......................... end of collaps four -->
-								 
+								<button type="submit" class="mt-4 btn btn-primary">
+									{{ __('Update Wallet') }}
+								</button>
 								{{-- <a href="{{ url('dashboard/skip_account') }}" style="color:red;">Skip</a> --}}
-								<input type="hidden" name="id" value="{{Auth::user()->id}}">
-								<input type="hidden" name="_token" value="{{ csrf_token() }}">
+								
 								</form>
 							</div>
 						</div>

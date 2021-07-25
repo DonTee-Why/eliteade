@@ -16,7 +16,7 @@
                     </a>
                     <div class="clearfix"></div>
                     <div class="collapse in" id="collapseExample">
-                        {{-- <ul class="nav">
+                        {{-- <ul class="nav">Finves
                             <li>
                                 <a href="{{ url('dashboard/profile') }}">
                                     <span class="link-collapse">Account Settings</span>
@@ -109,7 +109,7 @@
                         <ul class="nav nav-collapse">
                             <li>
                                 <a href="{{ url('dashboard/mplans') }}">
-                                    <span class="sub-item">Investment Plans</span>
+                                    <span class="sub-item">Account Types</span>
                                 </a>
                             </li>
                             <li>

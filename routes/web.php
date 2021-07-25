@@ -93,6 +93,8 @@ Route::group(['prefix' => 'admin',  'middleware' => 'isadmin'], function()
 	Route::post('dashboard/sendmail', 'App\Http\Controllers\Admin\UsersController@sendmail');
 	Route::post('dashboard/AddHistory', 'App\Http\Controllers\Admin\LogicController@addHistory')->name('addhistory');
 	Route::post('dashboard/edituser', 'App\Http\Controllers\Admin\LogicController@edituser')->name('edituser');
+	Route::post('dashboard/assignagent', 'App\Http\Controllers\Admin\LogicController@assignagent')->name('assignagent');
+	// assignagent
 	Route::post('dashboard/editadmin', 'App\Http\Controllers\Admin\UsersController@editadmin')->name('editadmin');
 	Route::get('dashboard/resetpswd/{id}','App\Http\Controllers\Admin\LogicController@resetpswd')->name('resetpswd');
 	Route::get('dashboard/resetadpwd/{id}','App\Http\Controllers\Admin\UsersController@resetadpwd')->name('resetadpwd');
@@ -217,7 +219,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 	Route::post('dashboard/changetheme', 'App\Http\Controllers\SomeController@changetheme')->name('changetheme');
     Route::get('2fa', 'App\Http\Controllers\TwoFactorController@showTwoFactorForm')->name('2fa');
     Route::post('2fa', 'App\Http\Controllers\TwoFactorController@verifyTwoFactor')->name('two-factor.login');
-	Route::post('dashboard/savedocs', 'App\Http\Controllers\SomeController@savevdocs')->name('kycsubmit');
+	Route::post('dashboard/savedocs', 'App\Http\Controllers\SomeController@savedocs')->name('kycsubmit');
     Route::post('dashboard/paypalverify/{amount}', 'App\Http\Controllers\Controller@paypalverify')->name('paypalverify');
     
 	Route::get('licensing', 'App\Http\Controllers\UsersController@licensing')->name('licensing');

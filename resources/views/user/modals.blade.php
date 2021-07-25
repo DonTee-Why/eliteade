@@ -19,7 +19,8 @@
 	 Kindly Select a Payment Method
 	</button>
 	<div class="dropdown-menu">
-	  <a class="dropdown-item" target="_blank" href="https://buy.moonpay.com/">Moon Pay</a>
+		<img src="" alt="">
+	  <a class="dropdown-item" target="_blank" href="https://buy.moonpay.com/">Moon Pay <img src="" alt=""></a>
 	  <div class="dropdown-divider"></div>
 	  <a class="dropdown-item" target="_blank" href="https://buy.chainbits.com/">Simplex</a>
 	  <div class="dropdown-divider"></div>
@@ -31,7 +32,7 @@
 	  <div class="dropdown-divider"></div>
 		<a class="dropdown-item" target="_blank" href="https://www.coinjar.com/">Coinjar</a>
 		<div class="dropdown-divider"></div>
-		<a class="dropdown-item" target="_blank" href="https://advcash.com/en/">Advcash</a>
+		<a class="dropdown-item" target="_blank" href="https://advcash.com/en/">Advcash <img src="../img/favicon/ADVCash.png" alt=""></a>
 		<div class="dropdown-divider"></div>
 		<a class="dropdown-item" target="_blank" href="https://itez.com/">Itez</a>
 		<div class="dropdown-divider"></div>

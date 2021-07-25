@@ -1,4 +1,4 @@
-@include('home.assetss')
+@include('home.asset')
 
 <body class="d-flex flex-column h-100 auth-page">
     <!-- ======= Loginup Section ======= -->
@@ -69,6 +69,11 @@
                                     <x-jet-button class="mt-4 btn btn-primary">
                                         {{ __('Log in') }}
                                     </x-jet-button>
+                                    {{-- <button type="submit" class="mt-4 btn btn-primary">
+                                        {{ __('Log in') }}
+                                    </button> --}}
+        
+                                    <submit>
                                 </div>
                             </form>
                         </div>

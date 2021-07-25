@@ -19,6 +19,8 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->text('two_factor_secret')->nullable();
+            $table->text('two_factor_recovery_codes')->nullable();
             $table->date('dob')->nullable();
             $table->text('address')->nullable();
             $table->string('country')->nullable();
@@ -30,7 +32,7 @@ class CreateUsersTable extends Migration
             $table->string('acnt_type_active')->nullable();
             $table->string('btc_address')->nullable();
             $table->string('eth_address')->nullable();
-            $table->string('ltc_address')->nullable();
+            $table->string('usdt_address')->nullable();
             $table->string('plan')->nullable();
             $table->string('user_plan')->nullable();
             $table->integer('account_bal')->default('0');
@@ -56,7 +58,15 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
             $table->text('profile_photo_path')->nullable();
+            $table->datetime('token_2fa_expiry')->nullable();
+            $table->string('confirmed_plan')->nullable();
+            $table->string('proof_of_identity')->nullable();
+            $table->string('proof_of_residence')->nullable();
+            $table->integer('token_2fa')->nullable();
+            $table->integer('zip_code')->nullable();
+           
             $table->timestamps();
+
         });
     }
 

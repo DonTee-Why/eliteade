@@ -8,8 +8,9 @@
                 <div class="col-6 col-md-6 col-lg-6 col-sm-10 col-xl-6 ">
                     <div class="hero-image">
                         <div class="hero-text">
-                          <h1>Elite Trading Platform</h1>
-                          <p>For you trading services</p>
+                          <h1>AscentMarkets</h1>
+                          <p>Invest Your Resources To Create Financial Freedom
+                        </p>
                          
                         </div>
                       </div>

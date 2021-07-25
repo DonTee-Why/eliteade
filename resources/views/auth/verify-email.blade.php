@@ -1,4 +1,4 @@
-@include('home.assetss')
+@include('home.asset')
 
 <body class="d-flex flex-column h-100 auth-page">
     <!-- ======= Loginup Section ======= -->
@@ -39,6 +39,7 @@
             
                         <form method="POST" action="{{ route('logout') }}" class="mt-5 card__form">
                             @csrf
+                           
                             <button type="submit" class="mt-4 btn btn-primary">
                                 {{ __('Log Out') }}
                             </button>

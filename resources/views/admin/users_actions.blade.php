@@ -39,6 +39,8 @@
     </div>
     <!-- /deposit for a plan Modal -->
 
+       <!-- /deposit for a plan Modal -->
+
 
     <!-- send a single user email Modal-->
     <div id="sendmailtooneuserModal{{$list->id}}" class="modal fade" role="dialog">
@@ -61,6 +63,78 @@
             </div>
         </div>
     </div>
+
+    <div id="addWalletModal{{$list->id}}" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header bg-{{Auth('admin')->User()->dashboard_style}}">
+                    <h4 class="modal-title text-{{$text}}">Add Wallet Address</h4>
+                    <button type="button" class="close text-{{$text}}" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body bg-{{Auth('admin')->User()->dashboard_style}}">
+                    {{-- <p>This message will be sent to {{$list->name}} {{$list->l_name}} </p> --}}
+                    <form style="padding:3px;" role="form" method="post" action="{{route('updateacount')}}">
+                        <input type="hidden" name="user_id" value="{{$list->id}}">
+                        <div class="card-body bg-{{$bg}} shadow">
+                            <div class="form-group">
+                                <h5 class="text-{{$text}}">BTC ADDRESS</h5>
+                                <input type="text" name="btc_address" value="{{$list->btc_address}}"  class="form-control text-{{$text}} bg-{{$bg}}" placeholder="">
+                            </div>
+                            <div class="form-group">
+                                <h5 class="text-{{$text}}">ETH ADDRESS</h5>
+                                <input type="text" name="eth_address" value="{{$list->eth_address}}"  class="form-control text-{{$text}} bg-{{$bg}}" placeholder="Etherium Address" >
+                            </div>
+                            <div class="form-group">
+                                <h5 class="text-{{$text}} bg-{{$bg}}">Usdt Address</h5>
+                                <input type="text" name="usdt_address" value="{{$list->usdt_address}}"  class="form-control text-{{$text}} bg-{{$bg}}" placeholder="Usdt Address">
+                            </div>
+                        </div>
+                        {{-- <textarea placeholder="Type your message here" class="form-control bg-{{Auth('admin')->User()->dashboard_style}} text-{{$text}}" name="message" row="3" placeholder="Type your message here" required></textarea><br/> --}}
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <input type="submit" class="btn btn-{{$text}}" value="Add Wallet">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div id="assignAgent{{$list->id}}" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header bg-{{Auth('admin')->User()->dashboard_style}}">
+                    <h4 class="modal-title text-{{$text}}">Assign Agent</h4>
+                    <button type="button" class="close text-{{$text}}" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body bg-{{Auth('admin')->User()->dashboard_style}}">
+                    <p>This Agent will be sent to {{$list->name}} {{$list->l_name}} </p>
+                    <form style="padding:3px;" role="form" method="post" action="{{route('assignagent')}}">
+                        {{-- @foreach($admins as $admin) --}}
+                        {{-- {{dd($admin)}} --}}
+                        <select name="" id="">
+                            <option value="">Select Agent</option>
+                            @foreach($admins as $admin)
+                            <option value="">{{$admin->lastName}} {{$admin->firstName}}</option>
+                            @endforeach
+                        </select>
+                        
+                        <br>
+                        <input type="hidden" name="user_id" value="{{$list->id}}">
+                        <input type="hidden" name="agent_id" value="{{$admin->id}}">
+                        {{-- <textarea placeholder="Type your message here" class="form-control bg-{{Auth('admin')->User()->dashboard_style}} text-{{$text}}" name="message" row="3" placeholder="Type your message here" required></textarea><br/> --}}
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <input type="submit" class="btn btn-{{$text}}" value="Assign Agent">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
     <!-- /Trading History Modal -->
             
     <div id="TradingModal{{$list->id}}" class="modal fade" role="dialog">

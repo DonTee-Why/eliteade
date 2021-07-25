@@ -48,24 +48,16 @@
                             </div>
                             <h3 class=" text-{{$text}} text-center">Proof of Identity</h3>
                             <form role="form" method="post" action="{{route('kycsubmit')}}"  enctype="multipart/form-data">
-                                <h5 class="text-{{$text}}">Valid identity card. (e.g. Drivers licence, international passport or National ID card).</h5>
+                                <h5 class="text-{{$text}}">Valid identity card. (e.g. Drivers licence, international passport, National ID card or Residence Permit).</h5>
                                 <input type="file" class="form-control bg-{{$bg}} text-{{$text}}" name="idcard" required><br>
                                 <h5 class="text-{{$text}}">Passport photogragh</h5>
                                 <input type="file" class="form-control bg-{{$bg}} text-{{$text}}" name="passport" required><br>
-                                {{-- <h5 class="text-{{$text}}">Driving License</h5>
-                                <input type="file" class="form-control bg-{{$bg}} text-{{$text}}" name="driving_license" required><br> --}}
-                                <h5 class="text-{{$text}}">Residence Permit</h5>
-                                <input type="file" class="form-control bg-{{$bg}} text-{{$text}}" name="residence_permit" required><br>
-                                <h3 class=" text-{{$text}} text-center">Proof of Residence</h3>
-                                <h5 class="text-{{$text}}">Utility Bill.</h5>
-                                <input type="file" class="form-control bg-{{$bg}} text-{{$text}}" name="idcard" required><br>
-                                <h5 class="text-{{$text}}">Bank Statement</h5>
-                                <input type="file" class="form-control bg-{{$bg}} text-{{$text}}" name="bank_statement" required><br>
-                                <h5 class="text-{{$text}}">Tax Documents</h5>
-                                <input type="file" class="form-control bg-{{$bg}} text-{{$text}}" name="tax_documents" required><br>
-                                <h5 class="text-{{$text}}">Residence Certificate</h5>
-                                <input type="file" class="form-control bg-{{$bg}} text-{{$text}}" name="residence_certificate" required><br>
-                               <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                               
+                                <h3 class=" text-{{$text}} text-center">Proof of Residence </h3>
+                                <h5 class="text-{{$text}}">(e.g Utility Bill, Bank Statement, Tax Documents or Residence Certificate)</h5>
+                                <input type="file" class="form-control bg-{{$bg}} text-{{$text}}" name="proof_of_residence" required><br>
+                                
+                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                <input type="submit" class="btn btn-{{$text}}" value="Submit documents">
                            </form>
                         </div>

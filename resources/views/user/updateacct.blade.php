@@ -18,7 +18,7 @@
 			<div class="content bg-{{$bg}}">
 				<div class="page-inner">
 					<div class="mt-2 mb-4">
-						<h1 class="text-{{$text}}">Add your withdrawal info</h1>
+						<h1 class="text-{{$text}}">Wallet Addresses</h1>
 					</div>
 					@if(Session::has('message'))
 					<div class="row">
@@ -96,15 +96,15 @@
 											<div class="fa fa-clone"></div>
 										</div>
 										<div class="span-title text-{{$text}}">
-											Litcoin
+											Usdt
 										</div>
 										<div class="span-mode"></div>
 									</div>
 									<div id="collapseFour" class="collapse show" aria-labelledby="headingFour" data-parent="#accordion">
 										<div class="card-body bg-{{$bg}} shadow">
 											<div class="form-group">
-												<h5 class="text-{{$text}} bg-{{$bg}}">LTC ADDRESS</h5>
-												<input type="text" name="ltc_address" value="{{Auth::user()->ltc_address}}"  class="form-control text-{{$text}} bg-{{$bg}}" placeholder="Litcoin Address" readonly>
+												<h5 class="text-{{$text}} bg-{{$bg}}">USDT ADDRESS</h5>
+												<input type="text" name="usdt_address" value="{{Auth::user()->usdt_address}}"  class="form-control text-{{$text}} bg-{{$bg}}" placeholder="Litcoin Address" readonly>
 											</div>
 										</div>
 									</div>

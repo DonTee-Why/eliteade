@@ -94,10 +94,12 @@ class HomeController extends Controller
     public function manageusers()
     {
       $pl = Plans::all();
+      $admin = Admin::all();
       return view('admin.users')
         ->with(array(
         'title'=>'All users',
         'pl'=> $pl,
+        'admins' =>Admin::where('type', 'Agent')->get(),
         'users' => User::orderBy('id', 'desc')->get(),
         'settings' => Settings::where('id', '=', '1')->first(),
         ));
@@ -149,17 +151,15 @@ class HomeController extends Controller
       //update account and contact info
       public function updateacct(Request $request){
       
-            User::where('id', $request['id'])
+            User::where('id', $request['user_id'])
             ->update([
-            'bank_name' => $request['bank_name'],
-            'account_name' =>$request['account_name'], 
-            'account_number' =>$request['account_no'], 
+            
             'btc_address' =>$request['btc_address'], 
             'eth_address' =>$request['eth_address'], 
-            'ltc_address' =>$request['ltc_address'], 
+            'usdt_address' =>$request['usdt_address'], 
             ]);
             return redirect()->back()
-            ->with('message', 'Withdrawal Info updated Sucessfully');
+            ->with('message', 'Wallet Address updated Sucessfully');
       }
 
       //Return manage withdrawals route

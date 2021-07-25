@@ -58,7 +58,7 @@
                                     <h5 class="text-{{$text}}">Country</h5>
                                     <input type="text" value="{{Auth::user()->country }}" class="form-control bg-{{$bg}} text-{{$text}}" readonly> <br>
                                     <h5 class="text-{{$text}}">zip_code</h5>
-									<input type="number" name="zip_code" value="{{Auth::user()->zip_code }}" class="form-control bg-{{$bg}} text-{{$text}}" readonly> <br>
+									<input type="number" name="zip_code" value="{{Auth::user()->zip_code }}" class="form-control bg-{{$bg}} text-{{$text}}"> <br>
 									<h5 class="text-{{$text}}">Email</h5>
                                     <input type="text" value="{{Auth::user()->email }}" class="form-control bg-{{$bg}} text-{{$text}}" readonly> <br>
                                     <h5 class="text-{{$text}}">Address</h5>

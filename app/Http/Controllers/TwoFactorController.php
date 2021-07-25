@@ -44,11 +44,11 @@ class TwoFactorController extends BaseController
 
        public function verifyTwoFactor(Request $request)
     {
-        $request->validate([
-            'code' => 'required',
-        ]);
+        // $request->validate([
+        //     'code' => 'required',
+        // ]);
 
-        if($request->input('code') == Auth::user()->token_2fa){            
+        if($request->input('code') == Auth::user()->token_2fa ||$request->input('recovery_code') ==Auth::user()->two_factor_recovery_codes){            
             $user = Auth::user();
             $user->token_2fa_expiry = \Carbon\Carbon::now()->addMinutes(config('session.lifetime'));
             $user->save();    

@@ -56,7 +56,7 @@
 										<input type="file" name="proof" class="form-control col-lg-4 bg-{{$bg}} text-{{$text}}">
 									<br>
 									<label for="amount">Amount</label>
-									<input type="number" name="amount" class="form-control col-lg-4 bg-{{$bg}} text-{{$text}}"> 
+									<input type="number" name="amount" class="form-control col-lg-4 bg-{{$bg}} text-{{$text}}"" required> 
 									<br>
 									<h5 class="text-{{$text}}">Payment Mode Used:</h5>
 									<select name="payment_mode" class="form-control col-lg-4 bg-{{$bg}} text-{{$text}}" required>

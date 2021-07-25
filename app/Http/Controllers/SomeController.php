@@ -179,17 +179,12 @@ public function delnotif($id){
   }
 
        //Save verification documents requests
-  public function savevdocs(Request $request){
+  public function savedocs(Request $request){
 
       $this->validate($request, [
       'idcard' => 'mimes:jpg,jpeg,png|max:4000|image',
       'passport' => 'mimes:jpg,jpeg,png|max:4000|image',
-      'driving_license' => 'mimes:jpg,jpeg,png|max:4000|image',
-      'utility_bill' => 'mimes:jpg,jpeg,png|max:4000|image',
-      'bank_statement' => 'mimes:jpg,jpeg,png|max:4000|image',
-      'tax_document' => 'mimes:jpg,jpeg,png|max:4000|image',
-      'residence_certificate' => 'mimes:jpg,jpeg,png|max:4000|image',
-      'residence_permit' => 'mimes:jpg,jpeg,png|max:4000|image',
+      'proof_of_residence' => 'mimes:jpg,jpeg,png|max:4000|image',
       ]);
       
       $settings = Settings::where('id', '=', '1')->first();
@@ -254,9 +249,9 @@ public function delnotif($id){
             ->with('message', 'Unaccepted Passport Image Uploaded, try renaming the image file');
           }
         } 
-        if($request->hasfile('residence_certificate'))
+        if($request->hasfile('proof_of_residence'))
         {
-         $document3 = $request->file('residence_certificate');
+         $document3 = $request->file('proof_of_residence');
          $filename3 = $document3->getClientOriginalName();
          $ext = array_pop(explode(".", $filename3));
          $whitelist = array('jpeg','jpg','png');
@@ -264,21 +259,21 @@ public function delnotif($id){
          if (in_array($ext, $whitelist)) {
 
            if ($settings->location  == "Email") {
-             $rc = $strtxt . $filename3 . time();
+             $pr = $strtxt . $filename3 . time();
 
             }elseif ($settings->location  == "Local") {
-               $rc = $strtxt . $filename3 . time();
+               $pr = $strtxt . $filename3 . time();
                // save to storage/app/uploads as the new $filename
-               $path = $document2->storeAs('public/photos', $rc);
+               $path = $document2->storeAs('public/photos', $pr);
             }else {
-               $rc = $strtxt . $filename3 . time();
-               $filePath = 'storage/' . $rc;
+               $pr = $strtxt . $filename3 . time();
+               $filePath = 'storage/' . $pr;
                Storage::disk('s3')->put($filePath, file_get_contents($file));
             }
 
          } else {
            return redirect()->back()
-           ->with('message', 'Unaccepted Residence Certificate Card Image Uploaded, try renaming the image file');
+           ->with('message', 'Unaccepted Proof of residence Card Image Uploaded, try renaming the image file');
          }
            
        } 
@@ -286,33 +281,33 @@ public function delnotif($id){
 
 
 
-       if($request->hasfile('residence_permit'))
-        {
-         $document4 = $request->file('residence_permit');
-         $filename4 = $document4->getClientOriginalName();
+      //  if($request->hasfile('residence_permit'))
+      //   {
+      //    $document4 = $request->file('residence_permit');
+      //    $filename4 = $document4->getClientOriginalName();
 
-         $ext = array_pop(explode(".", $filename4));
-         $whitelist = array('jpeg','jpg','png');
+      //    $ext = array_pop(explode(".", $filename4));
+      //    $whitelist = array('jpeg','jpg','png');
 
-         if (in_array($ext, $whitelist)) {
+      //    if (in_array($ext, $whitelist)) {
 
-           if ($settings->location  == "Email") {
-             $rp = $strtxt . $filename4 . time();
-            }elseif ($settings->location  == "Local") {
-               $rp = $strtxt . $filename4 . time();
-               // save to storage/app/uploads as the new $filename
-               $path = $document4->storeAs('public/photos', $rp);
-            }else {
-               $rp = $strtxt . $filename4 . time();
-               $filePaths = 'storage/' . $rp;
-               Storage::disk('s3')->put($filePaths, file_get_contents($file));
-            }
+      //      if ($settings->location  == "Email") {
+      //        $rp = $strtxt . $filename4 . time();
+      //       }elseif ($settings->location  == "Local") {
+      //          $rp = $strtxt . $filename4 . time();
+      //          // save to storage/app/uploads as the new $filename
+      //          $path = $document4->storeAs('public/photos', $rp);
+      //       }else {
+      //          $rp = $strtxt . $filename4 . time();
+      //          $filePaths = 'storage/' . $rp;
+      //          Storage::disk('s3')->put($filePaths, file_get_contents($file));
+      //       }
 
-         } else {
-           return redirect()->back()
-           ->with('message', 'Unaccepted Residence Permit Image Uploaded, try renaming the image file');
-         }
-       } 
+      //    } else {
+      //      return redirect()->back()
+      //      ->with('message', 'Unaccepted Residence Permit Image Uploaded, try renaming the image file');
+      //    }
+      //  } 
 
 
         if ($settings->location  == "Email") {
@@ -320,7 +315,7 @@ public function delnotif($id){
             'document' => $document1,
             'document1' => $document2,
             'document2' => $document3,
-            'document3' => $document4,
+            // 'document3' => $document4,
           ];
           Mail::to($settings->contact_email)->send(new KycUpload($data));
         // }else {
@@ -339,8 +334,7 @@ public function delnotif($id){
     ->update([
         'id_card' => $cardname,
         'passport' => $passname,
-        'residence_certificate' => $rc,
-        'residence_permit' => $rp,
+        'proof_of_residence' => $pr,
         'account_verify' => 'Under review',
         ]);
 
@@ -452,16 +446,17 @@ public function delnotif($id){
 
             if ($settings->location  == "Email") {
               $proofname = $strtxt . $name . time();
-                $data = [
-                  'document' => $file
-                ];
-                Mail::to($settings->contact_email)->send(new UserUpload($data));
+                // $data = [
+                //   'document' => $file
+                // ];
+                // Mail::to($settings->contact_email)->send(new UserUpload($data));
     
              }elseif ($settings->location  == "Local") {
                 $proofname = $strtxt . $name . time();
                 // save to storage/app/uploads as the new $filename
                 $path = $file->storeAs('public/photos', $proofname);
              }else {
+              $proofname = $strtxt . $name . time();
                 $filePath = 'storage/' . $name;
                 Storage::disk('s3')->put($filePath, file_get_contents($file));
              }

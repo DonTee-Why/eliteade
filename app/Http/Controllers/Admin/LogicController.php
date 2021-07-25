@@ -477,6 +477,24 @@ class LogicController extends Controller
         ->with('message', "Action successful!.");
   }
     
+
+  // public function assignagent(Request $request){
+
+
+    public function assignagent(Request $request){
+    
+      User::where('id', $request['user_id'])
+      ->update([
+      'agent_id' => $request['agent_id'],
+       
+      ]);
+      return redirect()->back()
+      ->with('message', 'Agent Assigned');
+}
+  //   'agent_id'= $request('agent_id');
+  //   User::
+
+  // }
     
     //Add agent
   public function addagent(Request $request){

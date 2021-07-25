@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddConfirmedPlanToUsersTable extends Migration
+class AddAgentIdToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,9 @@ class AddConfirmedPlanToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('confirmed_plan')->nullable();
+            //
+            $table->integer('agent_id')->nullable();
+            $table->string('agent_name')->nullable();
         });
     }
 
