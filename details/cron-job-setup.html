@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+  
+<!-- Mirrored from doc.onlinetrade.brynamics.xyz/details/cron-job-setup by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 20 Aug 2020 12:57:55 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Cron job setup</title>
+    <meta name="description" content="Cron job setup">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="robots" content="all,follow">
+
+    <!-- Main Stylesheet File -->
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="../onlinetradedoc/lib/bootstrap/css/bootstrap.minn.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="../onlinetradedoc/lib/font-awesome/css/font-awesome.min.css">
+    <!-- Fontastic Custom icon font-->
+    <link rel="stylesheet" href="../onlinetradedoc/css/fontastic.css">
+    <!-- Google fonts - Poppins -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="../onlinetradedoc/css/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="../onlinetradedoc/css/custom.html">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="https://doc.onlinetrade.brynamics.xyz/onlinetradedoc/img/favicon.ico">
+    
+  </head>
+  <body>
+    <div class="page">
+      <!-- Main Navbar-->
+      <header class="header">
+        <nav class="navbar">
+          <!-- Search Box-->
+          <!-- <div class="search-box">
+            <button class="dismiss"><i class="icon-close"></i></button>
+            <form id="searchForm" action="#" role="search">
+              <input type="search" placeholder="What are you looking for..." class="form-control">
+            </form>
+          </div> -->
+          <div class="container-fluid">
+            <div class="navbar-holder d-flex align-items-center justify-content-between">
+              <!-- Navbar Header-->
+              <div class="navbar-header">
+                <!-- Navbar Brand --><a href="https://onlinetrade.brynamics.xyz/" class="navbar-brand d-none d-sm-inline-block">
+                  <div class="brand-text d-none d-lg-inline-block"><span>Onlinetrade</span><strong>Doc</strong></div>
+                  <div class="brand-text d-none d-sm-inline-block d-lg-none"><strong></strong></div></a>
+                <!-- Toggle Button--><a id="toggle-btn" href="#" class="menu-btn active"><span></span><span></span><span></span></a>
+              </div>
+              <!-- Navbar Menu -->
+              <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
+                <!-- Search-->
+                <!-- <li class="nav-item d-flex align-items-center"><a id="search" href="#"><i class="icon-search"></i></a></li> -->
+                
+                <!-- Logout    -->
+                <li class="nav-item"><a href="https://onlinetrade.brynamics.xyz/" class="nav-link logout"> <span class="d-none d-sm-inline">Home</span><i class="fa fa-home"></i></a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </header>
+      <div class="page-content d-flex align-items-stretch"> 
+        <!-- Side Navbar -->
+        <div class="wrapper">
+          <nav class="side-navbar" >
+      
+            <!-- Sidebar Navidation Menus-->
+                        <h6 class="heading pt-4">Getting Started</h6>
+            
+            <ul class="list-unstyled ">
+                
+            
+            <li><a href='introduction.html'>Introduction</a></li>
+            
+            <li><a href='installation.html'>Installation</a></li>
+            
+            <li><a href='update-guide.html'>Update Guide</a></li>
+            
+            <li><a href='using-a-custom-wordpress-or-html-frontend.html'>Using a Custom Wordpress or HTML frontend</a></li>
+            
+            <li><a href='kyc-setup-and-management.html'>KYC setup and management</a></li>
+            
+            <li><a href='modifying-front-end-content.html'>Modifying front end content</a></li>
+            
+            <li><a href='faqs.html'>FAQs</a></li>
+            
+            
+            </ul>
+                        <h6 class="heading pt-4">Settings</h6>
+            
+            <ul class="list-unstyled ">
+                
+            
+            <li><a href='cron-job-setup.html'>Cron job setup</a></li>
+            
+            <li><a href='creating-admin-account.html'>Creating Admin Account</a></li>
+            
+            <li><a href='configure-email-sender-info.html'>Configure Email Sender Info</a></li>
+            
+            <li><a href='live-chat-setup.html'>Live chat setup</a></li>
+            
+            <li><a href='force-https-redirection.html'>Force HTTPS Redirection</a></li>
+            
+            
+            </ul>
+                        <h6 class="heading pt-4">Payments</h6>
+            
+            <ul class="list-unstyled ">
+                
+            
+            <li><a href='automatic-payment-setup.html'>Automatic payment setup</a></li>
+            
+            <li><a href='credit-card-payment-setup.html'>Credit card payment setup</a></li>
+            
+            
+            </ul>
+                        
+          </nav>
+        </div>
+
+        <div class="content-inner">
+          <!-- Page Header-->
+          <header class="page-header">
+            <div class="container-fluid">
+              <h2 class="no-margin-bottom">Documentation</h2>
+            </div>
+          </header>
+
+          <section class="intron">
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-xl-10 col-md-6">
+                    <h3 class=" bd-title heading-primary">
+                      Cron job setup
+                    </h3>
+                    
+                    <p><section class="intron">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xl-10 col-md-6">This article will guide you on how to Set up Cron Job in <strong>Online trade.</strong>
+<h6 class="heading-secondary__top">What is Cron Job?</h6>
+<p class="paragraph lead"><span class="st"><em>cron</em> is a time-based <em>job</em> scheduler</span> that enables tasks to be scheduled and runned automatically in a set interval.</p>
+<p class="paragraph lead">Cron job enables Online Trade to automatically and dynamically add ROI (Return on Investment) on users account and also helps in automatic payments, confirmation and crediting to users account.</p>
+<h6 class="heading-secondary__top">Cron jobs setups</h6>
+<p class="paragraph lead">You can setup cron Job service in two ways:</p>
+<ul class="list_item">
+<li class="list_item-list">By using external Cron job service or</li>
+<li class="list_item-list">Internal Cron Job service on your cpanel or task scheduler on plesk</li>
+</ul>
+<h6 class="heading-secondary__top">Using Internal Cron Job service via Cpanel (settings)</h6>
+<p class="paragraph lead">First of all, we have the common settings option. It is to specify the Cron job settings. It contains five parts in every option which are;</p>
+<ol class="list_item">
+<li class="list_item-list">Minute (Range: 0 to 59)</li>
+<li class="list_item-list">Hour (Range: 0 to 23)</li>
+<li class="list_item-list">Day of month (Range: 1 to 31)</li>
+<li class="list_item-list">Month (Range: 1 to 12)</li>
+<li class="list_item-list">Day of week (Range: 0 to 6, Sunday will count as 0)</li>
+</ol>
+<div class="img-responsive"><img class="img-fluid rounded mt-2 mb-3" src="../../brynamicsup.netlify.app/img/cron.png" alt="Responsive image" /></div>
+<p class="list_item-list">In this interface, the meaning of Asterisk also needs to be understood. It basically represents the possible number for that position. If it is on minute, then it will make the cron job run every minute.</p>
+<p class="list_item-list">To locate this page and setup cron job on your cpanel host</p>
+<ul class="list_item">
+<li class="list_item-list">Go to cron job (you can use the search box)</li>
+<li class="list_item-list">create an every minute or 5 minutes job and supply the following command<br /><em>wget -O--q yourdomain.com/cron e.g. wget -O--q https://www.onlinetrade.com/cron</em></li>
+</ul>
+<p class="paragraph lead">To verify that your cron job is working, run the cron URL on your browser directly e.g. https://www.onlinetrade.com/cron. If this did not return error, it means all is well. <br />I hope this is helpful ?</p>
+<hr />
+<h6 class="heading-secondary__top">Using External Cron Job service</h6>
+<p class="paragraph lead">you can use an external cron job service such as <a href="https://cron-job.org/">cronjob.org</a></p>
+</div>
+</div>
+</div>
+</section></p>
+                    
+                  </div>
+                  
+
+            
+                </div>
+
+              </div>
+          </section>
+
+          
+              
+          <!-- Page Footer-->
+          <footer class="main-footer">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-sm-12">
+                  <p  class="text-center">&copy; 2020 Brynamics</p>
+                </div>
+                
+              </div>
+            </div>
+          </footer>
+        </div>
+      </div>
+    </div>
+    <!-- JavaScript files-->
+    <script src="../onlinetradedoc/lib/jquery/jquery.minn.js"></script>
+    <script src="../onlinetradedoc/lib/popper.js/umd/popper.min.js"> </script>
+    <script src="../onlinetradedoc/lib/bootstrap/js/bootstrap.minn.js"></script>
+    <!-- Main File-->
+    <script src="../onlinetradedoc/js/front.js"></script>
+  </body>
+
+<!-- Mirrored from doc.onlinetrade.brynamics.xyz/details/cron-job-setup by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 20 Aug 2020 12:57:57 GMT -->
+</html>
