@@ -9,8 +9,14 @@
                     <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
                         <span>
                             {{ Auth('admin')->User()->firstName }} {{ Auth('admin')->User()->lastName }}
-                            <span class="user-level"> Admin</span>
-                            {{-- <span class="caret"></span> --}}
+                            @if (Auth('admin')->User()->type == "Super Admin")
+                            <span class="user-level">Super Admin</span>
+                            @elseif (Auth('admin')->User()->type == "Admin")
+                            <span class="user-level">Admin</span>
+                            @else
+                            <span class="user-level">Agent</span>
+                            <span class="caret"></span> 
+                            @endif
                         </span>
                     </a>
                 </div>

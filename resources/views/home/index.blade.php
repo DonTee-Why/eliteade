@@ -1,22 +1,20 @@
 @include('home.assetss')
-
 <body class="d-flex flex-column h-100 auth-page">
     <!-- ======= Loginup Section ======= -->
     {{-- <section class="auth"> --}}
-        <div class="container-fluid">
+        <div class="container">
             <div class="row justify-content-center user-auth">
-                <div class="col-6 col-md-6 col-lg-6 col-sm-10 col-xl-6 ">
+                {{-- <div class="col-6"> --}}
+                <div class="col-6 col-md-6 col-lg-6 col-sm-12 col-xs-12 col-xl-6">
                     <div class="hero-image">
                         <div class="hero-text">
-                          <h1>AscentMarkets</h1>
-                          <p>Invest Your Resources To Create Financial Freedom
-                        </p>
-                         
+                            <h1>AscentMarkets</h1>
+                            <p>Invest Your Resources To Create Financial Freedom</p>
                         </div>
-                      </div>
-                      
+                    </div>
                 </div> 
-                <div class="col-6 col-md-6 col-lg-6 col-sm-10 col-xl-6 ">
+                {{-- <div class="col-6"> --}}
+                <div class="col-6 col-md-6 col-lg-6 col-sm-12 col-xs-12 col-xl-6">
                     <div class="login-box">
                         <div class="login-snip"> <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Login</label> <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
                             <div class="login-space">
@@ -31,54 +29,57 @@
                                         <div class="foot"> <a href="{{ route('password.request') }}">Forgot Password?</a> </div>
                                     </div>
                                 </form>
-                                {{-- <h1 class="mt-3 text-center"> Create an Account</h1> --}}
-
-                        <form method="POST" action="{{ route('register') }}" class="mt-5 card__form">
-                            @csrf
-                            {{-- </div> --}}
-                            {{-- <form action=""> --}}
-                                <div class="sign-up-form">
-                                    <div class="group">
-                                    @if ($errors->has('name'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                    @endif
-                                     <label for="user" class="label">Full Name</label> <input id="name" name="name" type="text" class="input" placeholder="Create your Username"> </div>
-                                    <div class="group">
-                                          @if ($errors->has('email'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('email') }}</strong>
-                                        </span>
-                                    @endif
-                                    <label for="pass" class="label">Email Address</label> <input id="email" name="email" type="text" class="input" placeholder="Enter your email address"> </div>
-                                    <div class="group ">
-                                        @if ($errors->has('phone'))
-                                            <span class="help-block">
-                                                <strong>{{ $errors->first('phone') }}</strong>
-                                            </span>
-                                        @endif
-                                        <label for="phone" class="label">Phone Number</label>
-                                        <input type="mumber" class="input" name="phone" value="{{ old('phone') }}" id="phone" placeholder="Enter Phone number">
-                                    </div>
-                                    <div class="form-row">
-                                        @if ($errors->has('password'))
-                                            <span class="help-block">
-                                                <strong>{{ $errors->first('password') }}</strong>
-                                            </span>
-                                        @endif
-                                        <div class="group col-md-6">
-                                            <label for="password " class="label">Password</label>
-                                            <input type="password" class="input" name="password" id="password" placeholder="Enter Password">
-                                        </div>
-                                        <div class="group col-md-6">
-                                            <label for="confirm-password" class="label">Confirm Password</label>
-                                            <input type="password" class="input" name="password_confirmation" value="{{ old('password_confirmation') }}" id="confirm-password" placeholder="Confirm Password">
-                                        </div>
-                                    </div>
+                                <form method="POST" action="{{ route('register') }}" class="mt-5 card__form">
+                                    @csrf
+                                    <div class="sign-up-form">
                                         <div class="group">
+                                            @if ($errors->has('name'))
+                                                <span class="help-block">
+                                                    <strong>{{ $errors->first('name') }}</strong>
+                                                </span>
+                                            @endif
+                                            <label for="user" class="label">Full Name</label> <input id="name" name="name" type="text" class="input" placeholder="Create your Username">
+                                        </div>
+                                        <div class="group">
+                                            @if ($errors->has('email'))
+                                                <span class="help-block">
+                                                    <strong>{{ $errors->first('email') }}</strong>
+                                                </span>
+                                            @endif
+                                            <label for="pass" class="label">Email Address</label> <input id="email" name="email" type="text" class="input" placeholder="Enter your email address">
+                                        </div>
+                                        <div class="group ">
+                                            @if ($errors->has('phone'))
+                                                <span class="help-block">
+                                                    <strong>{{ $errors->first('phone') }}</strong>
+                                                </span>
+                                            @endif
+                                            <label for="phone" class="label">Phone Number</label>
+                                            <input type="mumber" class="input" name="phone" value="{{ old('phone') }}" id="phone" placeholder="Enter Phone number">
+                                        </div>
+                                        <div class="form-row">
+                                            @if ($errors->has('password'))
+                                                <span class="help-block">
+                                                    <strong>{{ $errors->first('password') }}</strong>
+                                                </span>
+                                            @endif
+                                            <div class="group col-md-6">
+                                                <label for="password " class="label">Password</label>
+                                                <input type="password" class="input" name="password" id="password" placeholder="Enter Password">
+                                            </div>
+                                            <div class="group col-md-6">
+                                                <label for="confirm-password" class="label">Confirm Password</label>
+                                                <input type="password" class="input" name="password_confirmation" value="{{ old('password_confirmation') }}" id="confirm-password" placeholder="Confirm Password">
+                                            </div>
+                                        
+                                        
+                                        </div>
+                                        {{-- <div class="col-md-3">
+                                            <label for="contractType" class="form-label">{{ __('Contract Type') }}</label>
+                                            <select name="contractType" class="form-control" autocomplete="off"> --}}
+                                        <div class="group col-md-12">
                                             <label for="country" name="country">Country</label>
-                                            <select class="input" name="country" id="country" required>
+                                            <select class="input" name="country" id="country" style=color:grey required>
                                                 <option selected disabled>Choose Country</option>
                                                     <option value="Afganistan">Afghanistan</option>
                                                     <option value="Albania">Albania</option>
@@ -330,34 +331,22 @@
                                             </select>
                                         </div>
                                         <div class="group"> <input type="submit" class="button" value="Sign Up"> </div>
-                                    </div>
-                                {{-- </div> --}}
-                                    {{-- <div class="group"> 
-                                    <label for="pass" class="label">Password</label>
-                                     <input id="password" name="password" type="password" class="input" data-type="password" placeholder="Create your password"> </div>
-                                    <div class="group"> <label for="pass" class="label">Repeat Password</label> <input id="pass" type="password" class="input" data-type="password" placeholder="Repeat your password"> </div>
-                                                                       --}}
-                                    
-                                    <div class="foot"> <label for="tab-1">Already Member?</label> </div>
-                                    {{-- <div class="hr"></div> --}}
-                                    
-                                   
-                                </div>
-                            {{-- </form> --}}
+                                    </div>            
+                                </form>
+                                
+                            </div>
                         </div>
-                        
-                    </div>
                     </div>
                 </div>
                 <div class="text-center">
                     <hr>
                     <small class="text-center ">&copy; Copyright  {{date('Y')}} &nbsp; {{$settings->site_name}} &nbsp; All Rights Reserved.</small>
                 </div>
-                 </div>
+            </div>
         </div>
-</div>
 
 {{-- </section> --}}
 </body>
 </html>
+{{-- <div class=""><label for="">Already Member?</label></div> --}}
 

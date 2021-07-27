@@ -54,13 +54,13 @@
                                     <h5 class="text-{{$text}}">Date of Birth</h5>
                                     <input type="date" name="dob" class="form-control bg-{{$bg}} text-{{$text}}" value="{{ Auth::user()->dob }}"> <br>
                                     <h5 class="text-{{$text}}">Phone Number</h5>
-                                    <input type="text" name="phone"  class="form-control bg-{{$bg}} text-{{$text}}" value="{{ Auth::user()->phone }}"> <br>
+                                    <input type="text" name="phone" value="{{Auth::user()->phone }}" class="form-control bg-{{$bg}}" style="color:black" readonly> <br>
                                     <h5 class="text-{{$text}}">Country</h5>
-                                    <input type="text" value="{{Auth::user()->country }}" class="form-control bg-{{$bg}} text-{{$text}}" readonly> <br>
+                                    <input type="text" value="{{Auth::user()->country }}" class="form-control bg-{{$bg}}" style="color:black" readonly> <br>
                                     <h5 class="text-{{$text}}">zip_code</h5>
 									<input type="number" name="zip_code" value="{{Auth::user()->zip_code }}" class="form-control bg-{{$bg}} text-{{$text}}"> <br>
 									<h5 class="text-{{$text}}">Email</h5>
-                                    <input type="text" value="{{Auth::user()->email }}" class="form-control bg-{{$bg}} text-{{$text}}" readonly> <br>
+                                    <input type="text" value="{{Auth::user()->email }}" class="form-control bg-{{$bg}}" style="color:black" readonly> <br>
                                     <h5 class="text-{{$text}}">Address</h5>
                                     <textarea class="form-control bg-{{$bg}} text-{{$text}}" placeholder="Full Address" name="address" row="3" value="{{ Auth::user()->address }}">{{ Auth::user()->address }}</textarea><br/>
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">

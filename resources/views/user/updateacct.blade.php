@@ -64,7 +64,7 @@
 										<div class="card-body bg-{{$bg}} shadow">
 											<div class="form-group">
 												<h5 class="text-{{$text}}">BTC ADDRESS</h5>
-												<input type="text" name="btc_address" value="{{Auth::user()->btc_address}}"  class="form-control text-{{$text}} bg-{{$bg}}" placeholder="Bitcoin Address" readonly>
+												<input type="text" name="btc_address" value="{{Auth::user()->btc_address}}"  class="form-control" placeholder="Bitcoin Address" style="color:black" readonly>
 											</div>
 										</div>
 									</div>
@@ -84,7 +84,7 @@
 										<div class="card-body bg-{{$bg}} shadow">
 											<div class="form-group">
 												<h5 class="text-{{$text}}">ETH ADDRESS</h5>
-												<input type="text" name="eth_address" value="{{Auth::user()->eth_address}}"  class="form-control text-{{$text}} bg-{{$bg}}" placeholder="Etherium Address" readonly>
+												<input type="text" name="eth_address" value="{{Auth::user()->eth_address}}"  class="form-control" style="color:black" placeholder="Etherium Address" readonly>
 											</div>
 										</div>
 									</div>
@@ -104,7 +104,7 @@
 										<div class="card-body bg-{{$bg}} shadow">
 											<div class="form-group">
 												<h5 class="text-{{$text}} bg-{{$bg}}">USDT ADDRESS</h5>
-												<input type="text" name="usdt_address" value="{{Auth::user()->usdt_address}}"  class="form-control text-{{$text}} bg-{{$bg}}" placeholder="Litcoin Address" readonly>
+												<input type="text" name="usdt_address" value="{{Auth::user()->usdt_address}}"  class="form-control" style="color:black" placeholder="Usdt Address" readonly>
 											</div>
 										</div>
 									</div>

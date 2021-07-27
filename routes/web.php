@@ -198,7 +198,7 @@ Route::get('/verify-email', 'App\Http\Controllers\UsersController@verifyemail')-
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();
 	// Oluyosola remember you commented this out please
-    // return redirect('/dashboard');
+    return redirect('/dashboard');
 })->middleware(['auth', 'signed'])->name('verification.verify');
 
 Route::post('/email/verification-notification', function (Request $request) {
