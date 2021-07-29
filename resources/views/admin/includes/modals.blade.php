@@ -67,35 +67,42 @@
 			    <!-- Modal content-->
 			    <div class="modal-content">
 			      <div class="modal-header bg-{{Auth('admin')->User()->dashboard_style}}">
-			        <h4 class="modal-title text-{{$text}}">Add new plan / package</h4>
+			        <h4 class="modal-title text-{{$text}}">Add nnew Account Type</h4>
 				  <button type="button" class="close text-{{$text}}" data-dismiss="modal">&times;</button>
 			      </div>
 			      <div class="modal-body bg-{{Auth('admin')->User()->dashboard_style}}">
               			<form style="padding:3px;" role="form" method="post" action="{{ route('addplan') }}">
-							<h5 class="text-{{$text}}">Plan Name</h5> 	
+							<h5 class="text-{{$text}}">Account Name</h5> 	
 							<input style="padding:5px;" class="form-control text-{{$text}} bg-{{Auth('admin')->User()->dashboard_style}}" placeholder="Enter Plan name" type="text" name="name" required><br/>
-								<h5 class="text-{{$text}}">Plan price</h5> 
+								<h5 class="text-{{$text}}">Price</h5> 
 								 <input style="padding:5px;" class="form-control text-{{$text}} bg-{{Auth('admin')->User()->dashboard_style}}" placeholder="Enter Plan price" type="text" name="price" required><br/>
-								 <h5 class="text-{{$text}}">Plan Minimum Price</h5> 			 
+								 <h5 class="text-{{$text}}">Minimum Deposit</h5> 			 
             					  <input style="padding:5px;" placeholder="Enter Plan minimum price" class="form-control text-{{$text}} bg-{{Auth('admin')->User()->dashboard_style}}" type="text" name="min_price" required><br/>
-            					  <h5 class="text-{{$text}}">Plan Maximum Price</h5> 			 
-								  <input style="padding:5px;" class="form-control text-{{$text}} bg-{{Auth('admin')->User()->dashboard_style}}" placeholder="Enter Plan maximum price" type="text" name="max_price" required><br/>
+            					  {{-- <h5 class="text-{{$text}}">One-on-one Training</h5> 			 
+								  <input style="padding:5px;" class="form-control text-{{$text}} bg-{{Auth('admin')->User()->dashboard_style}}" placeholder="Enter Plan maximum price" type="text" name="max_price" required><br/> --}}
 								
-								  <h5 class="text-{{$text}}">Minimum return</h5> 
+								  {{-- <h5 class="text-{{$text}}">Dedicated Account Managers</h5> 
 								<input style="padding:5px;" class="form-control text-{{$text}} bg-{{Auth('admin')->User()->dashboard_style}}" placeholder="Enter minimum return" type="text" name="minr" required><br/>
 								
-								<h5 class="text-{{$text}}">Maximum return</h5> 
-								<input style="padding:5px;" class="form-control text-{{$text}} bg-{{Auth('admin')->User()->dashboard_style}}" placeholder="Enter maximum return" type="text" name="maxr" required><br/>
-								<h5 class="text-{{$text}}">Gift Bonus</h5> 
-								<input style="padding:5px;" class="form-control text-{{$text}} bg-{{Auth('admin')->User()->dashboard_style}}" placeholder="Enter Additional Gift Bonus" type="text" name="gift" required><br/>	
-								 <h5 class="text-{{$text}}">top up interval</h5> 	
-                               <select class="form-control text-{{$text}} bg-{{Auth('admin')->User()->dashboard_style}}" name="t_interval">
-									<option>Monthly</option>
-									<option>Weekly</option>
-									<option>Daily</option>
-									<option>Hourly</option>
+								<h5 class="text-{{$text}}">Maximum return</h5> --}}
+								{{-- <input style="padding:5px;" class="form-control text-{{$text}} bg-{{Auth('admin')->User()->dashboard_style}}" placeholder="Enter maximum return" type="text" name="maxr" required><br/> --}}
+								<h5 class="text-{{$text}}">Starting Bonus</h5> 
+								<input style="padding:5px;" class="form-control text-{{$text}} bg-{{Auth('admin')->User()->dashboard_style}}" placeholder="Enter Starting Bonus" type="text" name="gift" required><br/>
+								 <h5 class="text-{{$text}}">Dedicated Account Managers</h5> 	
+                               <select class="form-control text-{{$text}} bg-{{Auth('admin')->User()->dashboard_style}}" name="d_acct_manager">
+									<option>Yes</option>
+									<option>No</option>
+									{{-- <option>Daily</option>
+									<option>Hourly</option> --}}
 								</select> <br>
-								<h5 class="text-{{$text}}">top up type</h5> 
+								<h5 class="text-{{$text}}">One-on-one Training</h5> 	
+								<select class="form-control text-{{$text}} bg-{{Auth('admin')->User()->dashboard_style}}" name="training">
+									 <option>Yes</option>
+									 <option>No</option>
+									 {{-- <option>Daily</option>
+									 <option>Hourly</option> --}}
+								 </select> <br>
+								{{-- <h5 class="text-{{$text}}">top up type</h5> 
                                <select class="form-control text-{{$text}} bg-{{Auth('admin')->User()->dashboard_style}}" name="t_type">
 									<option>Percentage</option>
 									<option>Fixed</option>
@@ -109,7 +116,7 @@
 									<option>Three months</option>	
 									<option>Six months</option>
 									<option>One year</option>
-								</select><br>
+								</select><br> --}}
 					   		<input type="hidden" name="_token" value="{{ csrf_token() }}">
 					   		<input type="submit" class="btn btn-primary" value="Add Plan">
 					   </form>

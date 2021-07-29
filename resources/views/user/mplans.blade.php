@@ -18,7 +18,7 @@
 			<div class="content bg-{{$bg}}">
 				<div class="page-inner">
 					<div class="mt-2 mb-4">
-						<h1 class="title1 text-{{$text}}">Available packages</h1>
+						<h1 class="title1 text-{{$text}}">Available Account Types</h1>
 					</div>
 					@if(Session::has('message'))
 					<div class="row">
@@ -57,22 +57,23 @@
 								</div>
 								<!-- Features -->
 								<div class="pricing-features">
-									<div class="feature text-{{$text}}">Minimum Possible Deposit:<span class="text-{{$text}}">{{$settings->currency}}{{$plan->min_price}}</span></div>
-									<div class="feature text-{{$text}}">Maximum Possible Deposit:<span  class="text-{{$text}}">{{$settings->currency}}{{$plan->max_price}}</span></div>
-									<div class="feature text-{{$text}}">Minimum Return:<span class="text-{{$text}}">{{$settings->currency}}{{$plan->minr}}</span></div>
-									<div class="feature text-{{$text}}">Maximum Return:<span class="text-{{$text}}">{{$settings->currency}}{{$plan->maxr}}</span></div>
-									<div class="feature text-{{$text}}">Gift Bonus:<span class="text-{{$text}}">{{$settings->currency}}{{$plan->gift}}</span></div>
-									<div class="feature text-{{$text}}">Duration:<span class="text-{{$text}}">{{$plan->expiration}}</span></div>
+									<div class="feature text-{{$text}}">Minimum Deposit:<span class="text-{{$text}}">{{$settings->currency}}{{$plan->min_price}}</span></div>
+									{{-- <div class="feature text-{{$text}}">Maximum Possible Deposit:<span  class="text-{{$text}}">{{$settings->currency}}{{$plan->max_price}}</span></div> --}}
+									{{-- <div class="feature text-{{$text}}">Minimum Return:<span class="text-{{$text}}">{{$settings->currency}}{{$plan->minr}}</span></div>
+									<div class="feature text-{{$text}}">Maximum Return:<span class="text-{{$text}}">{{$settings->currency}}{{$plan->maxr}}</span></div> --}}
+									<div class="feature text-{{$text}}">Starting Bonus:<span class="text-{{$text}}">{{$settings->currency}}{{$plan->gift}}</span></div>
+									<div class="feature text-{{$text}}">Dedicated Managers:<span class="text-{{$text}}">{{$plan->d_acct_manager}}</span></div>
+									<div class="feature text-{{$text}}">One-on-one Training:<span class="text-{{$text}}">{{$plan->d_acct_manager}}</span></div>
 								</div> <br>
 								<!-- Button -->
 								<div class="">
-									<form style="padding:3px;" role="form" method="post" action="{{action('App\Http\Controllers\Controller@joinplan')}}">
-										<h5 class="text-{{$text}}">Amount to invest: ({{$settings->currency}}{{$plan->price}} default)</h5>
-										<input type="number" min="{{$plan->min_price}}" max="{{$plan->max_price}}" name="iamount" placeholder="{{$settings->currency.$plan->price}}" class="form-control text-{{$text}} bg-{{$bg}}"> <br>
-										<input type="hidden" name="duration" value="{{$plan->expiration}}">
+									{{-- <form style="padding:3px;" role="form" method="post" action="{{action('App\Http\Controllers\Controller@joinplan')}}"> --}}
+										{{-- <h5 class="text-{{$text}}">Amount to invest: ({{$settings->currency}}{{$plan->price}} default)</h5> --}}
+										{{-- <input type="number" min="{{$plan->min_price}}" max="{{$plan->max_price}}" name="iamount" placeholder="{{$settings->currency.$plan->price}}" class="form-control text-{{$text}} bg-{{$bg}}"> <br> --}}
+										{{-- <input type="hidden" name="duration" value="{{$plan->expiration}}"> --}}
 										<input type="hidden" name="id" value="{{ $plan->id }}">
 										<input type="hidden" name="_token" value="{{ csrf_token() }}">
-										<input type="submit" class="btn btn-block pricing-action btn-primary nav-pills" value="Join plan" style=" border-radius: 40px;">
+										<a href="https://ascentmarkets.com/account-types/" target="_blank"><input type="" class="btn btn-block pricing-action btn-primary nav-pills" value="View More" style=" border-radius: 40px;"></a>
 									</form>
 								</div>
 							</div>

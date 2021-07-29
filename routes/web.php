@@ -86,6 +86,7 @@ Route::group(['prefix' => 'admin',  'middleware' => 'isadmin'], function()
 	Route::get('dashboard/settings','App\Http\Controllers\Admin\HomeController@settings')->name('settings');
 	Route::get('dashboard/frontpage','App\Http\Controllers\Admin\HomeController@frontpage')->name('frontpage');
 	Route::get('dashboard/adduser','App\Http\Controllers\Admin\HomeController@adduser')->name('adduser');
+	Route::get('dashboard/addpayment','App\Http\Controllers\Admin\HomeController@addpayment')->name('addpayment');
 	Route::post('dashboard/addplan','App\Http\Controllers\Admin\LogicController@addplan')->name('addplan');
 	Route::post('dashboard/updateplan','App\Http\Controllers\Admin\LogicController@updateplan')->name('updateplan');
 	Route::post('dashboard/topup', 'App\Http\Controllers\Admin\LogicController@topup')->name('topup');
@@ -128,6 +129,7 @@ Route::group(['prefix' => 'admin',  'middleware' => 'isadmin'], function()
 	Route::get('dashboard/delsub/{id}', 'App\Http\Controllers\Admin\LogicController@delsub' );
 	Route::get('dashboard/confirmsub/{id}', 'App\Http\Controllers\Admin\LogicController@confirmsub' );
 	Route::post('dashboard/saveuser','App\Http\Controllers\Admin\LogicController@saveuser');
+	Route::post('dashboard/savepaymentmode','App\Http\Controllers\Admin\LogicController@savepaymentmode');
 	Route::post('dashboard/saveadmin','App\Http\Controllers\Admin\LogicController@saveadmin');
 
 	Route::get('dashboard/unblock/{id}','App\Http\Controllers\Admin\UsersController@unblock');
@@ -226,7 +228,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 	Route::get('dashboard/deposits', ['middleware' => 'auth', 'uses' => 'App\Http\Controllers\Controller@deposits'])->name('deposits');
 	Route::get('dashboard/skip_account', ['middleware' => 'auth', 'uses' => 'Controller@skip_account']);
 	Route::get('dashboard/payment', 'App\Http\Controllers\SomeController@payment')->name('payment');
-	Route::get('dashboard/tradinghistory', 'App\Http\Controllers\SomeController@tradinghistory')->name('tradinghistory');
+	Route::get('dashboard/make-deposit', 'App\Http\Controllers\SomeController@makeDeposit')->name('make-deposit');
+		Route::get('dashboard/tradinghistory', 'App\Http\Controllers\SomeController@tradinghistory')->name('tradinghistory');
 	Route::get('dashboard/accounthistory', 'App\Http\Controllers\SomeController@accounthistory')->name('accounthistory');
 	Route::get('dashboard/withdrawals', ['middleware' => 'auth', 'uses' => 'App\Http\Controllers\Controller@withdrawals'])->name('withdrawalsdeposits')->middleware('2fa');
 	//dashboard

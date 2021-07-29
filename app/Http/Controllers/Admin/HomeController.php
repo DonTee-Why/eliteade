@@ -283,6 +283,10 @@ class HomeController extends Controller
       'settings' => Settings::where('id', '=', '1')->first()));
   }
 
+  public function addpayment(){
+    return view('admin.addpayment');
+  }
+
   public function addmanager(){
     return view('admin.addadmin')->with(array(
       'title'=>'Add new manager',

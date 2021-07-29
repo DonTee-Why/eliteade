@@ -74,9 +74,6 @@
                                         
                                         
                                         </div>
-                                        {{-- <div class="col-md-3">
-                                            <label for="contractType" class="form-label">{{ __('Contract Type') }}</label>
-                                            <select name="contractType" class="form-control" autocomplete="off"> --}}
                                         <div class="group col-md-12">
                                             <label for="country" name="country">Country</label>
                                             <select class="input" name="country" id="country" style=color:grey required>
@@ -348,5 +345,5 @@
 {{-- </section> --}}
 </body>
 </html>
-{{-- <div class=""><label for="">Already Member?</label></div> --}}
+
 

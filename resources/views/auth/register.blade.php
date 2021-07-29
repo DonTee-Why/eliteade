@@ -9,8 +9,9 @@
             <div class="row justify-content-center user-auth">
                 <div class="col-12 col-md-6 col-lg-6 col-sm-10 col-xl-6">
                     <div class="mb-4 text-center">
-                        <a href="{{url('/')}}"><img src="{{ asset('storage/app/public/photos/'.$settings->logo)}}" alt="{{$settings->site_name}}" title="" class="img-fluid auth__logo" /> </a>
-                            @if(Session::has('status'))
+                        <a href="{{url('/')}}" ><img class="auth__logo img-fluid"
+                            src="{{Storage::url('uploads/'.$settings->logo)}}" alt="{{$settings->site_name}}"> </a> 
+                        @if(Session::has('status'))
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
                                 {{ Session::get('status') }}
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">

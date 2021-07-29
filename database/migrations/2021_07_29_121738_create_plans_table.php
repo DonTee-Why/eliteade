@@ -18,6 +18,8 @@ class CreatePlansTable extends Migration
             $table->string('name')->nullable();
             $table->string('price')->nullable();
             $table->string('min_price')->nullable();
+            $table->string('d_acct_manager')->nullable();
+            $table->string('training')->nullable();
             $table->string('max_price')->nullable();
             $table->string('minr')->nullable();
             $table->string('maxr')->nullable();

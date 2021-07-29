@@ -13,7 +13,7 @@ if (Auth('admin')->User()->dashboard_style == "light") {
 			<div class="content bg-{{Auth('admin')->User()->dashboard_style}}">
 				<div class="page-inner">
 					<div class="mt-2 mb-4">
-						<h1 class="title1 text-{{$text}}">Available Plans</h1>
+						<h1 class="title1 text-{{$text}}">Available Account Types</h1>
 					</div>
 					@if(Session::has('message'))
 					<div class="row">
@@ -40,7 +40,7 @@ if (Auth('admin')->User()->dashboard_style == "light") {
 					@endif
 					<div class="mb-5 row">
 						<div class="mt-2 col-lg-12">
-							<a class="btn btn-primary" href="#" data-toggle="modal" data-target="#plansModal"><i class="fa fa-plus"></i> New plan</a> <br> <br>
+							<a class="btn btn-primary" href="#" data-toggle="modal" data-target="#plansModal"><i class="fa fa-plus"></i> New Account Type</a> <br> <br>
 						</div>
 						@foreach($plans as $plan)
 						<div class="col-lg-4 p-3 card bg-{{Auth('admin')->User()->dashboard_style}}">
@@ -55,12 +55,13 @@ if (Auth('admin')->User()->dashboard_style == "light") {
 								</div>
 								<!-- Features -->
 								<div class="pricing-features">
-									<div class="feature text-{{$text}}">Minimum Possible Deposit:<span class="text-{{$text}}">{{$settings->currency}}{{$plan->min_price}}</span></div>
-									<div class="feature text-{{$text}}">Maximum Possible Deposit:<span  class="text-{{$text}}">{{$settings->currency}}{{$plan->max_price}}</span></div>
-									<div class="feature text-{{$text}}">Minimum Return:<span class="text-{{$text}}">{{$settings->currency}}{{$plan->minr}}</span></div>
-									<div class="feature text-{{$text}}">Maximum Return:<span class="text-{{$text}}">{{$settings->currency}}{{$plan->maxr}}</span></div>
-									<div class="feature text-{{$text}}">Gift Bonus:<span class="text-{{$text}}">{{$settings->currency}}{{$plan->gift}}</span></div>
-									<div class="feature text-{{$text}}">Duration:<span class="text-{{$text}}">{{$plan->expiration}}</span></div>
+									<div class="feature text-{{$text}}">Minimum Deposit:<span class="text-{{$text}}">{{$settings->currency}}{{$plan->min_price}}</span></div>
+									{{-- <div class="feature text-{{$text}}">Maximum Possible Deposit:<span  class="text-{{$text}}">{{$settings->currency}}{{$plan->max_price}}</span></div> --}}
+									{{-- <div class="feature text-{{$text}}">Minimum Return:<span class="text-{{$text}}">{{$settings->currency}}{{$plan->minr}}</span></div>
+									<div class="feature text-{{$text}}">Maximum Return:<span class="text-{{$text}}">{{$settings->currency}}{{$plan->maxr}}</span></div> --}}
+									<div class="feature text-{{$text}}">Starting Bonus:<span class="text-{{$text}}">{{$settings->currency}}{{$plan->gift}}</span></div>
+									<div class="feature text-{{$text}}">Dedicated Managers:<span class="text-{{$text}}">{{$plan->d_acct_manager}}</span></div>
+									<div class="feature text-{{$text}}">One-on-one Training:<span class="text-{{$text}}">{{$plan->d_acct_manager}}</span></div>
 								</div> <br>
 								
 								<!-- Button -->
@@ -77,34 +78,42 @@ if (Auth('admin')->User()->dashboard_style == "light") {
 									<!-- Modal content-->
 									<div class="modal-content bg-{{Auth('admin')->User()->dashboard_style}}">
 										<div class="modal-header ">
-											<h4 class="modal-title text-{{$text}}">Update plan / package</h4>
+											<h4 class="modal-title text-{{$text}}">Update Account Type</h4>
 											<button type="button" class="close text-{{$text}}" data-dismiss="modal">&times;</button>
 										</div>
 										<div class="modal-body">
 											<form role="form" method="post" action="{{ route('updateplan') }}">
-												<h5 class="text-{{$text}}">Plan Name</h5>   
+												<h5 class="text-{{$text}}">Account Name</h5>   
 												<input style="padding:5px;" class="form-control text-{{$text}} bg-{{Auth('admin')->User()->dashboard_style}}" value="{{$plan->name}}" type="text" name="name" required><br/>
-												<h5 class="text-{{$text}}">Plan price</h5> 
+												<h5 class="text-{{$text}}">price</h5> 
 												<input style="padding:5px;" class="form-control text-{{$text}} bg-{{Auth('admin')->User()->dashboard_style}}" value="{{$plan->price}}" type="text" name="price" required><br/>
-												<h5 class="text-{{$text}}">Plan Minimum Price</h5> 	 
+												<h5 class="text-{{$text}}">Minimum Deposit</h5> 	 
 												<input style="padding:5px;" class="form-control text-{{$text}} bg-{{Auth('admin')->User()->dashboard_style}}" value="{{$plan->min_price}}" type="text" name="min_price" required><br/>
-												<h5 class="text-{{$text}}">Plan Maximum Price</h5> 	 	 
+												{{-- <h5 class="text-{{$text}}">Plan Maximum Price</h5> 	 	 
 												<input style="padding:5px;" class="form-control  text-{{$text}} bg-{{Auth('admin')->User()->dashboard_style}}" value="{{$plan->max_price}}" type="text" name="max_price" required><br/>
 												<h5 class="text-{{$text}}"> Minimum Return</h5> 	 
 												<input style="padding:5px;" class="form-control text-{{$text}} bg-{{Auth('admin')->User()->dashboard_style}}" value="{{$plan->minr}}" placeholder="Enter minimum return" type="text" name="minr" required><br/>
 												<h5 class="text-{{$text}}"> Maximum Return</h5> 
-												<input style="padding:5px;" class="form-control text-{{$text}} bg-{{Auth('admin')->User()->dashboard_style}}" value="{{$plan->maxr}}"  placeholder="Enter maximum return" type="text" name="maxr" required><br/>
-												<h5 class="text-{{$text}}"> Gift Bonus</h5> 
+												<input style="padding:5px;" class="form-control text-{{$text}} bg-{{Auth('admin')->User()->dashboard_style}}" value="{{$plan->maxr}}"  placeholder="Enter maximum return" type="text" name="maxr" required><br/> --}}
+												<h5 class="text-{{$text}}"> Starting Bonus</h5> 
 												<input style="padding:5px;" class="form-control text-{{$text}} bg-{{Auth('admin')->User()->dashboard_style}}" value="{{$plan->gift}}"  placeholder="Enter Additional Gift Bonus" type="text" name="gift" required><br/>
-												<h5 class="text-{{$text}}">Top Up Interval</h5> 
-												<select class="form-control text-{{$text}} bg-{{Auth('admin')->User()->dashboard_style}}" name="t_interval">
-													<option>{{$plan->increment_interval}}</option>
-													<option>Monthly</option>
-													<option>Weekly</option>
-													<option>Daily</option>
-													<option>Hourly</option>
+												<h5 class="text-{{$text}}">Dedicated Account Manager</h5> 
+												<select class="form-control text-{{$text}} bg-{{Auth('admin')->User()->dashboard_style}}" name="d_acct_manager">
+													<option>{{$plan->d_acct_manager}}</option>
+													<option>Yes</option>
+													<option>No</option>
+													{{-- <option>Daily</option>
+													<option>Hourly</option> --}}
 												</select><br>
-												<h5 class="text-{{$text}}">Top Up Type</h5> 
+												<h5 class="text-{{$text}}">One-on-one Training</h5>
+												<select class="form-control text-{{$text}} bg-{{Auth('admin')->User()->dashboard_style}}" name="training">
+													<option>{{$plan->training}}</option>
+													<option>Yes</option>
+													<option>No</option>
+													{{-- <option>Daily</option>
+													<option>Hourly</option> --}}
+												</select><br>
+												{{-- <h5 class="text-{{$text}}">Top Up Type</h5> 
 												<select class="form-control text-{{$text}} bg-{{Auth('admin')->User()->dashboard_style}}" name="t_type">
 													<option>{{$plan->increment_type}}</option>
 													<option>Percentage</option>
@@ -120,7 +129,7 @@ if (Auth('admin')->User()->dashboard_style == "light") {
 													<option>Three months</option>
 													<option>Six months</option>
 													<option>One year</option>
-												</select><br>
+												</select><br> --}}
 												<input type="hidden" name="id" value="{{ $plan->id }}">
 												<input type="hidden" name="_token" value="{{ csrf_token() }}">
 												<input type="submit" class="btn btn-primary" value="Update">

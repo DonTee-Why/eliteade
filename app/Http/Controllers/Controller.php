@@ -131,6 +131,9 @@ class Controller extends BaseController
         //sum total deposited
         $total_deposited = DB::table('deposits')->select(DB::raw("SUM(amount) as count"))->where('user', Auth::user()->id)->
         where('status','Processed')->get();
+
+        $plan_name = Plans::where('id', Auth::user()->user_plan)->first();
+        // dd($plan_name);
           
       
         if($settings->payment_mode=='Bank transfer'){
@@ -166,6 +169,7 @@ class Controller extends BaseController
         //'earnings'=>$earnings,
         'title'=>'User panel',
         // 'ref_earnings' => $ref_earnings,
+        'plan' => $plan_name,
         'deposited' => $total_deposited,
         'total_bonus' => $total_bonus,
         'user_plan' => $user_plan,
@@ -240,6 +244,7 @@ class Controller extends BaseController
         ->with('message', 'MT4 Details Submitted Successfully, Please wait for the system to validate your credentials');
     } 
 
+  
   
 
     //Return deposit route
@@ -413,20 +418,22 @@ class Controller extends BaseController
     }else{
         $plan_price = $plan->price;
     }
-    //check if the user account balance can buy this plan
-    if($user->account_bal < $plan_price){
-        //redirect to make deposit
-        return redirect()->route('deposits')
-      ->with('message', 'Your account is insufficient to purchase this plan. Please make a deposit.');
-        
+if(Auth::user()->plan->exists()){
+
+    // //check if the user account balance can buy this plan
+    // if($user->account_bal < $plan_price){
+    //     //redirect to make deposit
+    return redirect()->back()
+    ->with('message', 'You are on a plan, kindly contact the admin to upgrade.');
+      
     }
   
-      if($plan->type=='Main'){
-          //debit user
-          User::where('id', $user->id)
-          ->update([
-         'account_bal'=>$user->account_bal-$plan_price,
-        ]);
+      // if($plan->type=='Main'){
+      //     //debit user
+      //     User::where('id', $user->id)
+      //     ->update([
+      //    'account_bal'=>$user->account_bal-$plan_price,
+      //   ]);
         
         //create history
              Tp_Transaction::create([
@@ -457,14 +464,14 @@ class Controller extends BaseController
           'user_plan' => $userplanid,
           'entered_at'=>\Carbon\Carbon::now(),
         ]);
+      // }
         
-        
-      }elseif($plan->type=='Promo'){
-        User::where('id',Auth::user()->id)
-        ->update([
-          'promo_plan'=>$plan->id,
-        ]);
-      }
+    //   }elseif($plan->type=='Promo'){
+    //     User::where('id',Auth::user()->id)
+    //     ->update([
+    //       'promo_plan'=>$plan->id,
+    //     ]);
+    //   }
       return redirect()->back()
       ->with('message', 'You successfully purchased a plan and your plan is now active.');
     }

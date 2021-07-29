@@ -8,7 +8,7 @@
                 <div class="col-12 col-md-6 col-lg-6 col-sm-10 col-xl-6 ">
                     <div class="mb-4 text-center">
                         <a href="{{url('/')}}" ><img class="auth__logo img-fluid"
-                            src="{{ asset('storage/app/public/photos/'.$settings->logo)}}" alt="{{$settings->site_name}}"> </a>
+                            src="{{Storage::url('uploads/'.$settings->logo)}}" alt="{{$settings->site_name}}"> </a>
                     
                         @if(Session::has('message'))
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">

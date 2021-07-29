@@ -792,6 +792,7 @@ class ComposerStaticInitbb154d96d9f0a955cb37f43e4c154c08
         'App\\Models\\Images' => __DIR__ . '/../..' . '/app/Models/Images.php',
         'App\\Models\\Mt4Details' => __DIR__ . '/../..' . '/app/Models/Mt4Details.php',
         'App\\Models\\Notification' => __DIR__ . '/../..' . '/app/Models/Notification.php',
+        'App\\Models\\Pic' => __DIR__ . '/../..' . '/app/Models/Pic.php',
         'App\\Models\\Plans' => __DIR__ . '/../..' . '/app/Models/Plans.php',
         'App\\Models\\Settings' => __DIR__ . '/../..' . '/app/Models/Settings.php',
         'App\\Models\\Testimony' => __DIR__ . '/../..' . '/app/Models/Testimony.php',

@@ -20,7 +20,7 @@ if (Auth::user()->dashboard_style == "light") {
                     <div class="mt-2 mb-4">
                         <h2 class="text-{{$text}} pb-2">Welcome, {{ Auth::user()->name }}!</h2>
                         <br>
-                        {{-- <h2 class="text-{{$text}} pb-2"> {{ Auth::user()->user_plan}}</h2> --}}
+                        {{-- <h2 class="text-{{$text}} pb-2"> {{Auth::user()->plan_name}}</h2> --}}
 
                         @if(Session::has('getAnouc') && Session::get('getAnouc') == "true" )
                             @if ($settings->enable_annoc == "on")

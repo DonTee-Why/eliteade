@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\pic;
 use App\Models\Settings;
 use App\Models\Plans;
 use App\Models\Agent;
@@ -421,6 +422,11 @@ public function delnotif($id){
     //   'title' => 'Make deposit',
     //   'settings' => Settings::where('id', '=', '1')->first(),
     // ));
+}
+public function makeDeposit(Request $request){
+  $pics = Pic::all();
+// dd($pics);
+  return view('user.make-deposit',compact('pics'));
 }
 
   //Save deposit requests

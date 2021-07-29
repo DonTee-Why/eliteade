@@ -64,8 +64,8 @@
                 </div>
                 <div class="row shadow-lg p-3 ">
                     <div class="col-lg-12 mb-3">
-                        <a href="{{ url('dashboard/mplans') }}" class="btn btn-lg btn-{{$text}} nav-pills"> <i class="fa fa-plus"></i> Add plan</a>
-                        <h1 class="text-{{$text}} my-3">Concurrent Packages:</h1>
+                        <a href="{{ url('dashboard/mplans') }}" class="btn btn-lg btn-{{$text}} nav-pills"> <i class="fa fa"></i> View other Account Types</a>
+                        {{-- <h1 class="text-{{$text}} my-3">Concurrent Packages:</h1> --}}
                     </div>
                     @foreach($plans as $plan)
                     @if($cplan->id != $plan->id)

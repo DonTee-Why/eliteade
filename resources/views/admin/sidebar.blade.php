@@ -86,6 +86,12 @@
                         <p>Add Users</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ url('/admin/dashboard/addpayment') }}">
+                        <i class="fa fa- " aria-hidden="true"></i>
+                        <p>Payment Mode</p>
+                    </a>
+                </li>
                 @endif
                 
                 @if (Auth('admin')->User()->type == "Super Admin")

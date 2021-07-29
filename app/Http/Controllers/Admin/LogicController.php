@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 
 use App\Models\User;
+use App\Models\Pic;
 use App\Models\Settings;
 use App\Models\Plans;
 // use App\Models\hisplans;
@@ -58,6 +59,8 @@ class LogicController extends Controller
         $plan->price= $request['price'];
         $plan->min_price= $request['min_price'];
         $plan->max_price= $request['max_price'];
+        $plan->d_acct_manager= $request['d_acct_manager'];
+        $plan->training= $request['training'];
         $plan->minr=$request['minr'];
         $plan->maxr=$request['maxr'];
         $plan->gift=$request['gift'];
@@ -81,6 +84,8 @@ class LogicController extends Controller
         'price' => $request['price'],
         'min_price' => $request['min_price'],
         'max_price' => $request['max_price'],
+        'd_acct_manager'=> $request['d_acct_manager'],
+        'training'=> $request['training'],
         'minr' => $request['minr'],
         'maxr' => $request['maxr'],
         'gift' => $request['gift'],
@@ -629,6 +634,7 @@ class LogicController extends Controller
      ); 
      
      
+     
      //assign referal link to user
       $settings=Settings::where('id', '=', '1')->first();
 
@@ -640,6 +646,30 @@ class LogicController extends Controller
       ->with('message', 'User Registered Sucessful!');
 }
 
+
+public function savepaymentmode(Request $request){
+  $request->validate([
+    'image_name' => 'mimes:jpg,jpeg,png|max:500|image',
+    ]);
+  $fileModel  = new Pic;
+
+
+    if($request->file()) {
+      $fileName = time().'_'.$request->image_name->getClientOriginalName();
+      $filePath = $request->file('image_name')->storeAs('uploads', $fileName, 'public');
+
+      $fileModel->image_name = time().'_'.$request->image_name->getClientOriginalName();
+      $fileModel->image_path = '/storage/' . $filePath;
+      $fileModel->company  =$request->input('company');
+      $fileModel->link  =$request->input('link');
+  
+  $fileModel ->save();
+  return back()
+                  ->with('message','File has been uploaded.')
+                  ->with('file', $fileName);
+              
+    }
+}
 public function saveadmin(Request $request){
 
     $this->validate($request, [

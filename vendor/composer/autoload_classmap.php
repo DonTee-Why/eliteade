@@ -75,6 +75,7 @@ return array(
     'App\\Models\\Images' => $baseDir . '/app/Models/Images.php',
     'App\\Models\\Mt4Details' => $baseDir . '/app/Models/Mt4Details.php',
     'App\\Models\\Notification' => $baseDir . '/app/Models/Notification.php',
+    'App\\Models\\Pic' => $baseDir . '/app/Models/Pic.php',
     'App\\Models\\Plans' => $baseDir . '/app/Models/Plans.php',
     'App\\Models\\Settings' => $baseDir . '/app/Models/Settings.php',
     'App\\Models\\Testimony' => $baseDir . '/app/Models/Testimony.php',

@@ -1253,6 +1253,7 @@ h6 {
 
 .auth__logo {
     max-height: 70px;
+    /* width: 100%; */
 }
 
 .auth .card {

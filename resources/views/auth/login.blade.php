@@ -8,7 +8,9 @@
                 <div class="col-12 col-md-6 col-lg-6 col-sm-10 col-xl-6 ">
                     <div class="mb-4 text-center">
                        
-                        <a href="{{url('/')}}" ><img src="{{ asset('storage/app/public/photos/'.$settings->logo)}}" alt="{{$settings->site_name}}" title="" class="img-fluid auth__logo" /></a>
+                        <a href="{{url('/')}}" ><img class="img-fluid" style="max-height: 50px;"
+                            src="{{Storage::url('uploads/'.$settings->logo)}}"alt="{{$settings->site_name}}"> </a>
+                                
                             @if(Session::has('status'))
                                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                     {{ session('status') }}
