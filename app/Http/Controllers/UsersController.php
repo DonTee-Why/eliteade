@@ -38,86 +38,91 @@ class UsersController extends Controller
 { 
     
 
-    public function index()
-    {
-    $settings=Settings::where('id', '=', '1')->first();
-    //   $logoname = $settings->logo;
-    //   $favicon = $settings->favicon;
-
-    //   if(($logoname != NULL))
-    //     {
-    //       if ($settings->location == "AWS S3") {
-    //         if (Storage::disk('s3')->exists($logoname)) {
-    //           $logourl = 'https://s3.' . env('AWS_DEFAULT_REGION') . '.amazonaws.com/' . env('AWS_BUCKET') . '/';
-    //           $logofile = Storage::disk('s3')->get($logoname);
-    //           $src = $logourl.$logofile; 
-    //         }
-    //       } elseif ($settings->location == "SFTP") {
-    //         $logourl = $settings->site_address . '/';
-    //         $logofile = Storage::disk('sftp')->get($favicon);
-    //         $src = $favurl.$favfile;
-    //       }
-    //       elseif ($settings->location == "FTP") {
-    //         $logourl = $settings->site_address . '/';
-    //         $logofile = Storage::disk('ftp')->get($favicon);
-    //         $src = $favurl.$favfile;
-    //       }else{
-    //         $src='';
-    //       } 
-    //   }else{
-    //     $src='';
-    //   }
-
-    //   if(($favicon != NULL))
-    //   {
-    //     if ($settings->location == "AWS S3") {
-    //       if (Storage::disk('s3')->exists($favicon)) {
-    //         $favurl = 'https://s3.' . env('AWS_DEFAULT_REGION') . '.amazonaws.com/' . env('AWS_BUCKET') . '/';
-    //         $favfile = Storage::disk('s3')->get($favicon);
-    //         $favsrc = $favurl.$favfile;
-    //       }
-    //     } elseif ($settings->location == "SFTP") {
-    //       $favurl = $settings->site_address . '/';
-    //       $favfile = Storage::disk('sftp')->get($favicon);
-    //       $favsrc = $favurl.$favfile;
-    //     }
-    //     elseif ($settings->location == "FTP"){
-    //       $favurl = $settings->site_address . '/';
-    //       $favfile = Storage::disk('ftp')->get($favicon);
-    //       $favsrc = $favurl.$favfile;
-    //     }else {
-    //       $favsrc='';
-    //     }
-         
-    //   }else
+    // public function index()
     // {
-    //   $favsrc='';
-    // }
-        //sum total deposited
-        $total_deposits = DB::table('deposits')->select(DB::raw("SUM(amount) as total"))->
-        where('status','Processed')->get();
+    // $settings=Settings::where('id', '=', '1')->first();
+    // //   $logoname = $settings->logo;
+    // //   $favicon = $settings->favicon;
+
+    // //   if(($logoname != NULL))
+    // //     {
+    // //       if ($settings->location == "AWS S3") {
+    // //         if (Storage::disk('s3')->exists($logoname)) {
+    // //           $logourl = 'https://s3.' . env('AWS_DEFAULT_REGION') . '.amazonaws.com/' . env('AWS_BUCKET') . '/';
+    // //           $logofile = Storage::disk('s3')->get($logoname);
+    // //           $src = $logourl.$logofile; 
+    // //         }
+    // //       } elseif ($settings->location == "SFTP") {
+    // //         $logourl = $settings->site_address . '/';
+    // //         $logofile = Storage::disk('sftp')->get($favicon);
+    // //         $src = $favurl.$favfile;
+    // //       }
+    // //       elseif ($settings->location == "FTP") {
+    // //         $logourl = $settings->site_address . '/';
+    // //         $logofile = Storage::disk('ftp')->get($favicon);
+    // //         $src = $favurl.$favfile;
+    // //       }else{
+    // //         $src='';
+    // //       } 
+    // //   }else{
+    // //     $src='';
+    // //   }
+
+    // //   if(($favicon != NULL))
+    // //   {
+    // //     if ($settings->location == "AWS S3") {
+    // //       if (Storage::disk('s3')->exists($favicon)) {
+    // //         $favurl = 'https://s3.' . env('AWS_DEFAULT_REGION') . '.amazonaws.com/' . env('AWS_BUCKET') . '/';
+    // //         $favfile = Storage::disk('s3')->get($favicon);
+    // //         $favsrc = $favurl.$favfile;
+    // //       }
+    // //     } elseif ($settings->location == "SFTP") {
+    // //       $favurl = $settings->site_address . '/';
+    // //       $favfile = Storage::disk('sftp')->get($favicon);
+    // //       $favsrc = $favurl.$favfile;
+    // //     }
+    // //     elseif ($settings->location == "FTP"){
+    // //       $favurl = $settings->site_address . '/';
+    // //       $favfile = Storage::disk('ftp')->get($favicon);
+    // //       $favsrc = $favurl.$favfile;
+    // //     }else {
+    // //       $favsrc='';
+    // //     }
+         
+    // //   }else
+    // // {
+    // //   $favsrc='';
+    // // }
+    //     //sum total deposited
+    //     $total_deposits = DB::table('deposits')->select(DB::raw("SUM(amount) as total"))->
+    //     where('status','Processed')->get();
         
-        //sum total withdrawals
-        $total_withdrawals = DB::table('withdrawals')->select(DB::raw("SUM(amount) as total"))->
-        where('status','Processed')->get();
+    //     //sum total withdrawals
+    //     $total_withdrawals = DB::table('withdrawals')->select(DB::raw("SUM(amount) as total"))->
+    //     where('status','Processed')->get();
         
       
-        return view('home.index')->with(array(
-          'settings' => $settings,
-          'total_users' => User::count(),
-          'plans' => Plans::all(),
-          'total_deposits' => $total_deposits,
-          'total_withdrawals' => $total_withdrawals,
-          // 'logosrc' => $src,
-          // 'favsrc' => $favsrc,
-          'faqs'=> Faq::orderby('id', 'desc')->get(),
-          'test'=> Testimony::orderby('id', 'desc')->get(),
-          'withdrawals' => Withdrawal::orderby('id','DESC')->take(7)->get(),
-          'deposits' => Deposit::orderby('id','DESC')->take(7)->get(),
-          'title' => $settings->site_title,
-          'mplans' => Plans::where('type','Main')->get(),
-          'pplans' => Plans::where('type','Promo')->get(),
-        ));
+    //     return view('home.index')->with(array(
+    //       'settings' => $settings,
+    //       'total_users' => User::count(),
+    //       'plans' => Plans::all(),
+    //       'total_deposits' => $total_deposits,
+    //       'total_withdrawals' => $total_withdrawals,
+    //       // 'logosrc' => $src,
+    //       // 'favsrc' => $favsrc,
+    //       'faqs'=> Faq::orderby('id', 'desc')->get(),
+    //       'test'=> Testimony::orderby('id', 'desc')->get(),
+    //       'withdrawals' => Withdrawal::orderby('id','DESC')->take(7)->get(),
+    //       'deposits' => Deposit::orderby('id','DESC')->take(7)->get(),
+    //       'title' => $settings->site_title,
+    //       'mplans' => Plans::where('type','Main')->get(),
+    //       'pplans' => Plans::where('type','Promo')->get(),
+    //     ));
+    // }
+
+    public function index()
+    {
+        return redirect('https://ascentmarkets.com');
     }
 
     //Licensing and registration route

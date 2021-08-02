@@ -275,7 +275,8 @@ class Controller extends BaseController
         ->get(),
          'settings' => Settings::where('id', '=', '1')->first(),
          'wmethods' => Wdmethod::where('type', 'withdrawal')
-         ->where('status','enabled')->get(),
+         ->where('status','enabled')
+         ->get(),
          ));
      } 
      
