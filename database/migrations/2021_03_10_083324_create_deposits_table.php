@@ -18,7 +18,7 @@ class CreateDepositsTable extends Migration
             $table->string('txn_id')->nullable();
             $table->integer('user')->nullable();
             $table->string('uname')->nullable();
-            $table->string('amount')->nullable();
+            $table->integer('amount')->nullable();
             $table->string('payment_mode')->nullable();
             $table->integer('plan')->nullable();
             $table->string('status')->nullable();

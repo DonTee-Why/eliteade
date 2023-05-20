@@ -22,8 +22,8 @@ class CreateCpTransactionsTable extends Migration
             $table->string('user_plan')->nullable();
             $table->integer('user_id')->nullable();
             $table->integer('user_tele_id')->nullable();
-            $table->string('amount1')->nullable();
-            $table->string('amount2')->nullable();
+            $table->integer('amount1')->nullable();
+            $table->integer('amount2')->nullable();
             $table->string('currency1')->nullable();
             $table->string('currency2')->nullable();
             $table->string('status')->nullable();

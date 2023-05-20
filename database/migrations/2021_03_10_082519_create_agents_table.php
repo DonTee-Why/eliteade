@@ -18,7 +18,7 @@ class CreateAgentsTable extends Migration
             $table->string('agent')->nullable();
             $table->string('total_refered')->default('0');
             $table->string('total_activated')->default('0');
-            $table->string('earnings')->default('0');
+            $table->integer('earnings')->default('0');
             $table->timestamps();
         });
     }
