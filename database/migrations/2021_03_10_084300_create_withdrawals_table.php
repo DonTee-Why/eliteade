@@ -18,8 +18,8 @@ class CreateWithdrawalsTable extends Migration
             $table->string('txn_id')->nullable();
             $table->integer('user')->nullable();
             $table->string('uname')->nullable();
-            $table->string('amount')->nullable();
-            $table->string('to_deduct')->nullable();
+            $table->integer('amount')->nullable();
+            $table->integer('to_deduct')->nullable();
             $table->string('status')->nullable();
             $table->string('payment_mode')->nullable();
             $table->timestamps();
