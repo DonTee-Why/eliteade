@@ -209,9 +209,7 @@ Route::post('/email/verification-notification', function (Request $request) {
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
 
-Route::
-middleware(['auth:sanctum', 'verified'])->
-get('/dashboard', 'App\Http\Controllers\Controller@dashboard')->name('dashboard');
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', 'App\Http\Controllers\Controller@dashboard')->name('dashboard');
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('autoconfirm', 'CoinPaymentsAPI@autoconfirm')->name('autoconfirm');

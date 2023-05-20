@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Providers;
-use Storage;
+
+use Illuminate\Support\Facades\Storage;
 use League\Flysystem\Filesystem;
 use League\Flysystem\Sftp\SftpAdapter;
 
@@ -26,9 +27,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // if (env('APP_ENV') !== 'local') {
-        //     $this->app['request']->server->set('HTTPS', true);
-        // }
+        if (env('APP_ENV') !== 'local') {
+            $this->app['request']->server->set('HTTPS', true);
+        }
         Storage::extend('sftp', function ($app, $config) {
             return new Filesystem(new SftpAdapter($config));
         });
