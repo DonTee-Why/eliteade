@@ -18,8 +18,8 @@ class CreateWdmethodsTable extends Migration
             $table->string('name')->nullable();
             $table->string('minimum')->nullable();
             $table->string('maximum')->nullable();
-            $table->string('charges_fixed')->nullable();
-            $table->string('charges_percentage')->nullable();
+            $table->integer('charges_fixed')->nullable();
+            $table->integer('charges_percentage')->nullable();
             $table->string('duration')->nullable();
             $table->string('type')->nullable();
             $table->string('status')->nullable();

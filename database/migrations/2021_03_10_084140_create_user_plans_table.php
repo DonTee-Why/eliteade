@@ -17,7 +17,7 @@ class CreateUserPlansTable extends Migration
             $table->bigIncrements('id');
             $table->integer('plan')->nullable();
             $table->integer('user')->nullable();
-            $table->string('amount')->nullable();
+            $table->integer('amount')->nullable();
             $table->string('activate')->nullable();
             $table->string('inv_duration')->nullable();
             $table->datetime('expire_date')->nullable();

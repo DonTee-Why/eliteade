@@ -16,11 +16,11 @@ class CreatePlansTable extends Migration
         Schema::create('plans', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name')->nullable();
-            $table->string('price')->nullable();
-            $table->string('min_price')->nullable();
+            $table->integer('price')->nullable();
+            $table->integer('min_price')->nullable();
             $table->string('d_acct_manager')->nullable();
             $table->string('training')->nullable();
-            $table->string('max_price')->nullable();
+            $table->integer('max_price')->nullable();
             $table->string('minr')->nullable();
             $table->string('maxr')->nullable();
             $table->string('gift')->nullable();
@@ -28,7 +28,7 @@ class CreatePlansTable extends Migration
             $table->string('type')->nullable();
             $table->string('increment_interval')->nullable();
             $table->string('increment_type')->nullable();
-            $table->string('increment_amount')->nullable();
+            $table->integer('increment_amount')->nullable();
             $table->string('expiration')->nullable();
             $table->timestamps();
         });
