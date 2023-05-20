@@ -13,7 +13,7 @@ class ChangeColumnsOnWithdrawalsTable extends Migration
      */
     public function up()
     {
-        Schema::create('withdrawals', function (Blueprint $table) {
+        Schema::table('withdrawals', function (Blueprint $table) {
             $table->integer('amount')->change();
             $table->integer('to_deduct')->change();
         });
