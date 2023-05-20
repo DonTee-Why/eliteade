@@ -129,7 +129,7 @@ class Controller extends BaseController
 
 
         //sum total deposited
-        $total_deposited = DB::table('deposits')->select(DB::raw("SUM(amount) as count"))->where('user', Auth::user()->id)->where('status', 'Processed')->get();
+        $total_deposited = Deposit::query()->where('user', Auth::user()->id)->where('status', 'Processed')->sum('amount');
 
         $plan_name = Plans::where('id', Auth::user()->user_plan)->first();
         // dd($plan_name);
@@ -444,24 +444,22 @@ class Controller extends BaseController
         ]);
 
         //save user plan
-        $userplanid = DB::table('user_plans')->insertGetId(
-            [
-                'plan' => $plan->id,
-                'user' => Auth::user()->id,
-                'amount' => $plan_price,
-                'active' => 'yes',
-                'inv_duration' => $request['duration'],
-                'activated_at' => \Carbon\Carbon::now(),
-                'last_growth' => \Carbon\Carbon::now(),
-                'created_at' => \Carbon\Carbon::now(),
-                'updated_at' => \Carbon\Carbon::now(),
-            ]
-        );
-
+        $userplanid = User_plans::query()->create([
+            'plan' => $plan->id,
+            'user' => Auth::user()->id,
+            'amount' => $plan_price,
+            'active' => 'yes',
+            'inv_duration' => $request['duration'],
+            'activated_at' => \Carbon\Carbon::now(),
+            'last_growth' => \Carbon\Carbon::now(),
+            'created_at' => \Carbon\Carbon::now(),
+            'updated_at' => \Carbon\Carbon::now(),
+        ]);
+        
         User::where('id', Auth::user()->id)
             ->update([
                 'plan' => $plan->id,
-                'user_plan' => $userplanid,
+                'user_plan' => $userplanid->id,
                 'entered_at' => \Carbon\Carbon::now(),
             ]);
         // }

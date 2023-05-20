@@ -25,294 +25,310 @@ use App\Models\Wdmethod;
 use App\Models\Withdrawal;
 use App\Models\Cp_transaction;
 use App\Models\Tp_Transaction;
-use DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Twilio\Rest\Client;
 
 class HomeController extends Controller
 {
-  public function __construct() {
-    // Twilio credentials
-    $this->account_sid = env('ACCOUNT_SID');
-    $this->auth_token = env('AUTH_TOKEN');
+    private $account_sid;
+    private $auth_token;
+    private $from;
+    private $client;
 
-    //The twilio number you purchased
-    $this->from = env('TWILIO_PHONE_NUMBER');
+    public function __construct()
+    {
+        // Twilio credentials
+        $this->account_sid = env('ACCOUNT_SID');
+        $this->auth_token = env('AUTH_TOKEN');
 
-    // Initialize the Programmable Voice API
-    $this->client = new Client($this->account_sid, $this->auth_token);
-  }
+        //The twilio number you purchased
+        $this->from = env('TWILIO_PHONE_NUMBER');
 
-   
-     /**
-      * Show Admin Dashboard.
-      * 
-      * @return \Illuminate\Http\Response
-      */
-     public function index(){
+        // Initialize the Programmable Voice API
+        $this->client = new Client($this->account_sid, $this->auth_token);
+    }
+
+
+    /**
+     * Show Admin Dashboard.
+     * 
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
 
         //sum total deposited
-        $total_deposited = DB::table('deposits')->select(DB::raw("SUM(amount) as count"))->where('status','Processed')->get();
-        $pending_deposited = DB::table('deposits')->select(DB::raw("SUM(amount) as count"))->where('status','Pending')->get();
-        $total_withdrawn = DB::table('withdrawals')->select(DB::raw("SUM(amount) as count"))->where('status','Processed')->get();
-        $pending_withdrawn = DB::table('withdrawals')->select(DB::raw("SUM(amount) as count"))->where('status','Pending')->get();
+        $total_deposited = Deposit::query()->where('status', 'Processed')->sum('amount');
+        $pending_deposited = Deposit::query()->where('status', 'Pending')->sum('amount');
+        $total_withdrawn = Withdrawal::query()->where('status', 'Processed')->sum('amount');
+        $pending_withdrawn = Withdrawal::query()->where('status', 'Pending')->sum('amount');
 
         $userlist = User::count();
         $activeusers = User::where('status', 'active')->count();
         $blockeusers = User::where('status', 'blocked')->count();
         $plans = Plans::count();
-        $unverifiedusers = User::where('account_verify', '!=' ,'yes')->count();
-      
-         return view('admin.dashboard',[
+        $unverifiedusers = User::where('account_verify', '!=', 'yes')->count();
+
+        return view('admin.dashboard', [
             'title' => 'Admin Dashboard',
             'total_deposited' => $total_deposited,
             'pending_deposited' => $pending_deposited,
             'total_withdrawn' => $total_withdrawn,
             'pending_withdrawn' => $pending_withdrawn,
             'user_count' => $userlist,
-            'plans'=> $plans,
+            'plans' => $plans,
             'activeusers' => $activeusers,
             'blockeusers' => $blockeusers,
-            'unverifiedusers'=> $unverifiedusers,
+            'unverifiedusers' => $unverifiedusers,
             'settings' => Settings::where('id', '=', '1')->first(),
         ]);
-     }
-     //Plans route
+    }
+    //Plans route
     public function plans()
     {
-    	return view('admin.plans')
-        ->with(array(
-        'title'=>'System Plans',
-        'plans'=> Plans::where('type', 'Main')->orderby('created_at','ASC')->get(),
-        'pplans'=> Plans::where('type', 'Promo')->get(),
-        'settings' => Settings::where('id','1')->first(),
-        ));
+        return view('admin.plans')
+            ->with(array(
+                'title' => 'System Plans',
+                'plans' => Plans::where('type', 'Main')->orderby('created_at', 'ASC')->get(),
+                'pplans' => Plans::where('type', 'Promo')->get(),
+                'settings' => Settings::where('id', '1')->first(),
+            ));
     }
 
     //Return manage users route
     public function manageusers()
     {
-      $pl = Plans::all();
-      $admin = Admin::all();
-      return view('admin.users')
-        ->with(array(
-        'title'=>'All users',
-        'pl'=> $pl,
-        'admins' =>Admin::where('type', 'Agent')->get(),
-        'users' => User::orderBy('id', 'desc')->get(),
-        'settings' => Settings::where('id', '=', '1')->first(),
-        ));
+        $pl = Plans::all();
+        $admin = Admin::all();
+        return view('admin.users')
+            ->with(array(
+                'title' => 'All users',
+                'pl' => $pl,
+                'admins' => Admin::where('type', 'Agent')->get(),
+                'users' => User::orderBy('id', 'desc')->get(),
+                'settings' => Settings::where('id', '=', '1')->first(),
+            ));
     }
 
 
-     //Return search subscription route
-     public function searchsub(Request $request)
-     {
-       $searchItem=$request['searchItem'];
-       if($request['type']=='subscription'){
-         $result=Mt4Details::whereRaw("MATCH(mt4_id,account_type,server) AGAINST('$searchItem')")->paginate(10);
-       }
-       return view('admin.msubtrade')
-         ->with(array(
-         'title'=>'Subscription search result',
-         'subscriptions' => $result,
-         'settings' => Settings::where('id', '=', '1')->first(),
-         ));
-     }
-
-       //Return search route for Withdrawals
-       public function searchWt(Request $request)
-       { 
-        $dp = Withdrawal::all();
-        $searchItem=$request['wtquery'];
-        
-        $result=Withdrawal::where('user', $searchItem)
-			->orwhere('amount',$searchItem)
-			->orwhere('payment_mode',$searchItem)
-			->orwhere('status',$searchItem)
-			->paginate(10);
-        
-        return view('admin.mwithdrawals')
-          ->with(array(
-          'dp'=> $dp,
-          'title'=>'Withdrawals search result',
-          'withdrawals' => $result,
-          'settings' => Settings::where('id', '=', '1')->first(),
-          ));
-       }
-    
-       public function addwallet(Request $request){
-        return view('admin.adduserwallet')->with(array(
-          'title'=>'Update account details',
-          'settings' => Settings::where('id', '=', '1')->first()
-          ));
-      }
-      //update account and contact info
-      public function updateacct(Request $request){
-      
-            User::where('id', $request['user_id'])
-            ->update([
-            
-            'btc_address' =>$request['btc_address'], 
-            'eth_address' =>$request['eth_address'], 
-            'usdt_address' =>$request['usdt_address'], 
-            ]);
-            return redirect()->back()
-            ->with('message', 'Wallet Address updated Sucessfully');
-      }
-
-      //Return manage withdrawals route
-      public function mwithdrawals()
-      {
-        return view('admin.mwithdrawals')
-          ->with(array(
-          'title'=>'Manage users withdrawals',
-          'withdrawals' => Withdrawal::orderBy('id', 'desc')->get(),
-          'settings' => Settings::where('id', '=', '1')->first(),
-          ));
-      }
-
-      //Return manage deposits route
-      public function mdeposits()
-      {
-        return view('admin.mdeposits')
-          ->with(array(
-          'title'=>'Manage users deposits',
-          'deposits' => Deposit::orderBy('id', 'desc')->get(),
-          'settings' => Settings::where('id', '=', '1')->first(),
-          ));
-      }
-
-      //Return agents route
-      public function agents()
-      {
-        return view('admin.agents')
-          ->with(array(
-          'title'=>'Manage agents',
-          'users' => User::orderBy('id', 'desc')
-               ->get(),
-          'agents' => Agent::all(),
-          'settings' => Settings::where('id', '=', '1')->first(),
-          ));
-      }
-      
-       //Return view agent route
-      public function viewagent($agent)
-      {
-        return view('admin.viewagent')
-          ->with(array(
-          'title'=>'Agent record',
-          'agent'=> User::where('id',$agent)->first(),
-          'ag_r' => User::where('ref_by',$agent)->get(),
-          'settings' => Settings::where('id', '=', '1')->first(),
-          ));
-      }
-
-       //return settings form
-    public function settings(Request $request){
-        include'currencies.php';
-        return view('admin.settings')->with(array(
-          'settings' => Settings::where('id', '=', '1')->first(),
-          'wmethods' => Wdmethod::where('type', 'withdrawal')->get(),
-          'assets' => Asset::all(),
-          //'markets' => markets::all(),
-          'cpd' => Cp_transaction::where('id', '=', '1')->first(),
-          'currencies' => $currencies,
-          'title' =>'System Settings'));
-        //return view('settings')->with(array('settings' => Settings::where('id', '=', '1')->first(),'title' =>'System Settings'));
-      }
-
-      public function msubtrade()
-      {
+    //Return search subscription route
+    public function searchsub(Request $request)
+    {
+        $searchItem = $request['searchItem'];
+        if ($request['type'] == 'subscription') {
+            $result = Mt4Details::whereRaw("MATCH(mt4_id,account_type,server) AGAINST('$searchItem')")->paginate(10);
+        }
         return view('admin.msubtrade')
-        ->with(array(
-        'subscriptions' => Mt4Details::orderBy('id', 'desc')->get(),
-        'title'=>'Manage Subscription',
-        'settings' => Settings::where('id', '=', '1')->first(),
-        ));
-      } 
-      
-      public function userplans($id)
-      {
-        return view('admin.user_plans')
-        ->with(array(
-        'plans' => User_plans::where('user', $id)->orderBy('id', 'desc')->get(),
-        'user' => User::where('id' , $id)->first(),
-        'title'=>'User Investment Plan(s)',
-        'settings' => Settings::where('id', '=', '1')->first(),
-        ));
-      } 
+            ->with(array(
+                'title' => 'Subscription search result',
+                'subscriptions' => $result,
+                'settings' => Settings::where('id', '=', '1')->first(),
+            ));
+    }
 
-      public function userwallet($id)
-      {
-        $user = User::where('id' , $id)->first();
-         //sum total deposited
-         $total_deposited = DB::table('deposits')->select(DB::raw("SUM(amount) as count"))->where('user', $id)->
-         where('status','Processed')->get();
-           
-        return view('admin.user_wallet')
-        ->with(array(
-        'ref_bonus' => $user->ref_bonus,
-        'deposited' => $total_deposited,
-        'bonus' => $user->bonus,
-        'roi' => $user->roi,
-        'account_bal' => $user->account_bal,
-        'user' => $user->name,
-        'title'=>'User Investment Plan(s)',
-        'settings' => Settings::where('id', '=', '1')->first(),
+    //Return search route for Withdrawals
+    public function searchWt(Request $request)
+    {
+        $dp = Withdrawal::all();
+        $searchItem = $request['wtquery'];
+
+        $result = Withdrawal::where('user', $searchItem)
+            ->orwhere('amount', $searchItem)
+            ->orwhere('payment_mode', $searchItem)
+            ->orwhere('status', $searchItem)
+            ->paginate(10);
+
+        return view('admin.mwithdrawals')
+            ->with(array(
+                'dp' => $dp,
+                'title' => 'Withdrawals search result',
+                'withdrawals' => $result,
+                'settings' => Settings::where('id', '=', '1')->first(),
+            ));
+    }
+
+    public function addwallet(Request $request)
+    {
+        return view('admin.adduserwallet')->with(array(
+            'title' => 'Update account details',
+            'settings' => Settings::where('id', '=', '1')->first()
         ));
-      } 
-      
+    }
+    //update account and contact info
+    public function updateacct(Request $request)
+    {
+
+        User::where('id', $request['user_id'])
+            ->update([
+
+                'btc_address' => $request['btc_address'],
+                'eth_address' => $request['eth_address'],
+                'usdt_address' => $request['usdt_address'],
+            ]);
+        return redirect()->back()
+            ->with('message', 'Wallet Address updated Sucessfully');
+    }
+
+    //Return manage withdrawals route
+    public function mwithdrawals()
+    {
+        return view('admin.mwithdrawals')
+            ->with(array(
+                'title' => 'Manage users withdrawals',
+                'withdrawals' => Withdrawal::orderBy('id', 'desc')->get(),
+                'settings' => Settings::where('id', '=', '1')->first(),
+            ));
+    }
+
+    //Return manage deposits route
+    public function mdeposits()
+    {
+        return view('admin.mdeposits')
+            ->with(array(
+                'title' => 'Manage users deposits',
+                'deposits' => Deposit::orderBy('id', 'desc')->get(),
+                'settings' => Settings::where('id', '=', '1')->first(),
+            ));
+    }
+
+    //Return agents route
+    public function agents()
+    {
+        return view('admin.agents')
+            ->with(array(
+                'title' => 'Manage agents',
+                'users' => User::orderBy('id', 'desc')
+                    ->get(),
+                'agents' => Agent::all(),
+                'settings' => Settings::where('id', '=', '1')->first(),
+            ));
+    }
+
+    //Return view agent route
+    public function viewagent($agent)
+    {
+        return view('admin.viewagent')
+            ->with(array(
+                'title' => 'Agent record',
+                'agent' => User::where('id', $agent)->first(),
+                'ag_r' => User::where('ref_by', $agent)->get(),
+                'settings' => Settings::where('id', '=', '1')->first(),
+            ));
+    }
+
+    //return settings form
+    public function settings(Request $request)
+    {
+        include 'currencies.php';
+        return view('admin.settings')->with(array(
+            'settings' => Settings::where('id', '=', '1')->first(),
+            'wmethods' => Wdmethod::where('type', 'withdrawal')->get(),
+            'assets' => Asset::all(),
+            //'markets' => markets::all(),
+            'cpd' => Cp_transaction::where('id', '=', '1')->first(),
+            'currencies' => $currencies,
+            'title' => 'System Settings'
+        ));
+        //return view('settings')->with(array('settings' => Settings::where('id', '=', '1')->first(),'title' =>'System Settings'));
+    }
+
+    public function msubtrade()
+    {
+        return view('admin.msubtrade')
+            ->with(array(
+                'subscriptions' => Mt4Details::orderBy('id', 'desc')->get(),
+                'title' => 'Manage Subscription',
+                'settings' => Settings::where('id', '=', '1')->first(),
+            ));
+    }
+
+    public function userplans($id)
+    {
+        return view('admin.user_plans')
+            ->with(array(
+                'plans' => User_plans::where('user', $id)->orderBy('id', 'desc')->get(),
+                'user' => User::where('id', $id)->first(),
+                'title' => 'User Investment Plan(s)',
+                'settings' => Settings::where('id', '=', '1')->first(),
+            ));
+    }
+
+    public function userwallet($id)
+    {
+        $user = User::where('id', $id)->first();
+        //sum total deposited
+        $total_deposited = Deposit::query()->where('status', 'Processed')->sum('amount');
+
+        return view('admin.user_wallet')
+            ->with(array(
+                'ref_bonus' => $user->ref_bonus,
+                'deposited' => $total_deposited,
+                'bonus' => $user->bonus,
+                'roi' => $user->roi,
+                'account_bal' => $user->account_bal,
+                'user' => $user->name,
+                'title' => 'User Investment Plan(s)',
+                'settings' => Settings::where('id', '=', '1')->first(),
+            ));
+    }
+
     //return front end management page
-    public function frontpage(Request $request){
+    public function frontpage(Request $request)
+    {
         return view('admin.frontpage')->with(array(
-        'title'=>'Frontend management',
-        'faqs' => Faq::all(),
-        'images' => Images::orderBy('id', 'desc')->get(),
-        'testimonies' => Testimony::orderBy('id', 'desc')->get(),
-        'contents' => Content::orderBy('id', 'desc')->get(),
-        'settings' => Settings::where('id', '=', '1')->first(),
+            'title' => 'Frontend management',
+            'faqs' => Faq::all(),
+            'images' => Images::orderBy('id', 'desc')->get(),
+            'testimonies' => Testimony::orderBy('id', 'desc')->get(),
+            'contents' => Content::orderBy('id', 'desc')->get(),
+            'settings' => Settings::where('id', '=', '1')->first(),
         ));
     }
 
-    
-  public function adduser(){
-    return view('admin.referuser')->with(array(
-      'title'=>'Add new Users',
-      'settings' => Settings::where('id', '=', '1')->first()));
-  }
 
-  public function addpayment(){
-    return view('admin.addpayment');
-  }
+    public function adduser()
+    {
+        return view('admin.referuser')->with(array(
+            'title' => 'Add new Users',
+            'settings' => Settings::where('id', '=', '1')->first()
+        ));
+    }
 
-  public function addmanager(){
-    return view('admin.addadmin')->with(array(
-      'title'=>'Add new manager',
-      'settings' => Settings::where('id', '=', '1')->first()));
-  }
-  public function madmin(){
-    return view('admin.madmin')->with(array(
-      'admins' => Admin::orderby('id', 'desc')->get(),
-      'title'=>'Add new manager',
-      'settings' => Settings::where('id', '=', '1')->first(),
+    public function addpayment()
+    {
+        return view('admin.addpayment');
+    }
 
-    ));
-  }
+    public function addmanager()
+    {
+        return view('admin.addadmin')->with(array(
+            'title' => 'Add new manager',
+            'settings' => Settings::where('id', '=', '1')->first()
+        ));
+    }
+    public function madmin()
+    {
+        return view('admin.madmin')->with(array(
+            'admins' => Admin::orderby('id', 'desc')->get(),
+            'title' => 'Add new manager',
+            'settings' => Settings::where('id', '=', '1')->first(),
+
+        ));
+    }
 
     //Return KYC route
     public function kyc()
     {
-      return view('admin.kyc')
-        ->with(array(
-        'title'=>'KYC',
-        'users' => User::where('id_card','!=', NULL)
-        ->where('passport','!=', NULL)->get(),
-        'settings' => Settings::where('id', '=', '1')->first(),
-        ));
+        return view('admin.kyc')
+            ->with(array(
+                'title' => 'KYC',
+                'users' => User::where('id_card', '!=', NULL)
+                    ->where('passport', '!=', NULL)->get(),
+                'settings' => Settings::where('id', '=', '1')->first(),
+            ));
     }
-    
+
     // public function calendar()
     // {
     //   return view('admin.calender')
@@ -370,7 +386,7 @@ class HomeController extends Controller
     //       ['assign_to', Auth('admin')->User()->id],
     //       ['cstatus', NULL]
     //     ])->get(),
-        
+
     //     'title'=>'Manage New Registered Clients',
     //     'settings' => Settings::where('id', '=', '1')->first(),
     //     ));
@@ -386,5 +402,5 @@ class HomeController extends Controller
     //     'settings' => Settings::where('id', '=', '1')->first(),
     //     ));
     // }
-     
+
 }

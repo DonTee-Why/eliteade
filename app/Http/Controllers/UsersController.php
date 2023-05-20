@@ -94,11 +94,10 @@ class UsersController extends Controller
         //   $favsrc='';
         // }
         //sum total deposited
-        $total_deposits = DB::table('deposits')->select(DB::raw("SUM(amount) as total"))->where('status', 'Processed')->get();
+        $total_deposits = Deposit::query()->where('status', 'Processed')->sum('amount');
 
         //sum total withdrawals
-        $total_withdrawals = DB::table('withdrawals')->select(DB::raw("SUM(amount) as total"))->where('status', 'Processed')->get();
-
+        $total_withdrawals = Withdrawal::query()->where('status', 'Processed')->sum('amount');
 
         return view('home.index')->with(array(
             'settings' => $settings,
