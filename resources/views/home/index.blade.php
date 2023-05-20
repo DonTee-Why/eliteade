@@ -1,4 +1,4 @@
-@include('home.assetss')
+@include('home.assets')
 <body class="d-flex flex-column h-100 auth-page">
     <!-- ======= Loginup Section ======= -->
     {{-- <section class="auth"> --}}
