@@ -14,9 +14,8 @@ class ChangeUserPlanColumnOnUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            DB::statement('ALTER TABLE users ALTER COLUMN user_plan TYPE bigint USING (trim(user_plan))::bigint');
-        });
+        DB::statement('ALTER TABLE users ALTER COLUMN user_plan TYPE bigint USING (trim(user_plan))::bigint');
+        DB::statement('ALTER TABLE users ALTER COLUMN plan TYPE bigint USING (trim(plan))::bigint');
     }
 
     /**
