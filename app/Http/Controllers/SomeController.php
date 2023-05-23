@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Models\pic;
+use App\Models\Pic;
 use App\Models\Settings;
 use App\Models\Plans;
 use App\Models\Agent;

@@ -17,15 +17,15 @@ class User extends Authenticatable implements MustVerifyEmail
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
-   
-    
+
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'l_name', 'email', 'phone','country','password',
+        'name', 'l_name', 'email', 'phone', 'country', 'password',
     ];
 
     /**
@@ -60,18 +60,21 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
 
-    public function dp(){
-    	return $this->hasMany('App\Deposit', 'user');
+    public function dp()
+    {
+        return $this->hasMany('App\Deposit', 'user');
     }
 
-    public function wd(){
-    	return $this->hasMany('App\Withdrawal', 'user');
+    public function wd()
+    {
+        return $this->hasMany('App\Withdrawal', 'user');
     }
-    public function tuser(){
-    	return $this->belongsTo('App\Admin', 'assign_to');
+    public function tuser()
+    {
+        return $this->belongsTo('App\Admin', 'assign_to');
     }
-    public function dplan(){
-    	return $this->belongsTo('App\Plans', 'plan');
+    public function dplan()
+    {
+        return $this->belongsTo('App\Plans', 'plan');
     }
-	
 }
