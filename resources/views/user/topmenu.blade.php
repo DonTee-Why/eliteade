@@ -1,22 +1,23 @@
 <?php
-if (Auth::user()->dashboard_style == "light") {
-    $bgmenu="blue";
-    $bg="light";
-    $text = "dark";
+if (Auth::user()->dashboard_style == 'light') {
+    $bgmenu = 'blue';
+    $bg = 'light';
+    $text = 'dark';
 } else {
-    $bgmenu="dark";
-    $bg="dark";
-    $text = "light";
+    $bgmenu = 'dark';
+    $bg = 'dark';
+    $text = 'light';
 }
 
 ?>
 <div class="main-header">
     <!-- Logo Header -->
-    <div class="logo-header" data-background-color="{{$bgmenu}}">
-        <a href="{{url('/')}}" ><img class="img-fluid" style="max-height: 50px"
-            src="{{Storage::url('uploads/'.$settings->logo)}}" alt="{{$settings->site_name}}"> </a>
+    <div class="logo-header" data-background-color="{{ $bgmenu }}">
+        <a href="{{ url('/') }}"><img class="img-fluid" style="max-height: 50px"
+                src="{{ Storage::url('uploads/' . $settings->logo) }}" alt="{{ $settings->site_name }}"> </a>
 
-        <button class="ml-auto navbar-toggler sidenav-toggler" type="button" data-toggle="collapse" data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="ml-auto navbar-toggler sidenav-toggler" type="button" data-toggle="collapse"
+            data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon">
                 <i class="icon-menu"></i>
             </span>
@@ -31,8 +32,8 @@ if (Auth::user()->dashboard_style == "light") {
     <!-- End Logo Header -->
 
     <!-- Navbar Header -->
-    <nav class="navbar navbar-header navbar-expand-lg" data-background-color="{{$bgmenu}}">
-        
+    <nav class="navbar navbar-header navbar-expand-lg" data-background-color="{{ $bgmenu }}">
+
         <div class="container-fluid">
             <ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
                 <li class="nav-item hidden-caret">
@@ -42,14 +43,16 @@ if (Auth::user()->dashboard_style == "light") {
                                 <input name="style" id="style" type="checkbox" value="true" class="modes">
                                 <span class="slider round"></span>
                             </label>
-                        </div> 
-                        @if(Auth::user()->dashboard_style =='dark')
-                        <script>document.getElementById("style").checked= true;</script>
+                        </div>
+                        @if (Auth::user()->dashboard_style == 'dark')
+                            <script>
+                                document.getElementById("style").checked = true;
+                            </script>
                         @endif
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     </form>
                 </li>
-                {{-- @if($settings->google_translate =='on') --}}
+                {{-- @if ($settings->google_translate == 'on') --}}
                 <li class="nav-item hidden-caret">
                     <div id="google_translate_element"></div>
                     {{-- <div class="skiptranslate goog-te-gadget" dir="ltr" style="">
@@ -59,14 +62,14 @@ if (Auth::user()->dashboard_style == "light") {
                                 <a aria-haspopup="true" class="goog-te-menu-value" href="javascript:void(0)">
                                     <span>Select Language</span>
                                     {{-- <img src="https://www.google.com/images/cleardot.gif" alt="" width="1" height="1"> --}}
-                                    {{-- <span style="border-left: 1px solid rgb(187, 187, 187);">​</span>
+                    {{-- <span style="border-left: 1px solid rgb(187, 187, 187);">​</span>
                                     <img src="https://www.google.com/images/cleardot.gif" alt="" width="1" height="1"><span aria-hidden="true" style="color: rgb(213, 213, 213);">▼
                                     </span></a></span>
                                 </div>
-                            </div> --}} 
+                            </div> --}}
                 </li>
                 {{-- @endif --}}
-                
+
                 {{-- <li class="nav-item dropdown hidden-caret">
                     <a class="nav-link dropdown-toggle" href="#" id="notifDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fa fa-bell"></i>
@@ -80,7 +83,7 @@ if (Auth::user()->dashboard_style == "light") {
                         </li>
                     </ul>
                 </li> --}}
-                {{-- @if($settings->enable_kyc =="yes") --}}
+                {{-- @if ($settings->enable_kyc == 'yes') --}}
                 <li class="nav-item dropdown hidden-caret">
                     <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false">
                         <i class="fas fa-layer-group"></i><strong style="font-size:8px;">KYC</strong>
@@ -88,20 +91,22 @@ if (Auth::user()->dashboard_style == "light") {
                     <div class="dropdown-menu quick-actions quick-actions-info animated fadeIn">
                         <div class="quick-actions-header">
                             <span class="mb-1 title">KYC verification</span>
-                            @if(Auth::user()->account_verify=='yes')	
-                            <span class="subtitle op-8">
-                             <a href="#" class="p-0 col-12" ><i class="glyphicon glyphicon-ok"></i> KYC status: Account verified</a>
-                            </span>
+                            @if (Auth::user()->account_verify == 'yes')
+                                <span class="subtitle op-8">
+                                    <a href="#" class="p-0 col-12"><i class="glyphicon glyphicon-ok"></i> KYC
+                                        status: Account verified</a>
+                                </span>
                             @else
-                           <span class="subtitle op-8"><a>KYC status: {{Auth::user()->account_verify}}</a></span>
+                                <span class="subtitle op-8"><a>KYC status: {{ Auth::user()->account_verify }}</a></span>
                             @endif
                         </div>
                         <div class="quick-actions-scroll scrollbar-outer">
                             <div class="quick-actions-items">
                                 <div class="m-0 row">
-                                @if(Auth::user()->account_verify !='yes')
-                                <a href="{{route('account.verify')}}" class="btn btn-success">Verify Account </a>
-                                @endif
+                                    @if (Auth::user()->account_verify != 'yes')
+                                        <a href="{{ route('account.verify') }}" class="btn btn-success">Verify Account
+                                        </a>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -115,17 +120,19 @@ if (Auth::user()->dashboard_style == "light") {
                     <ul class="dropdown-menu dropdown-user animated fadeIn">
                         <div class="dropdown-user-scroll scrollbar-outer">
                             <li>
-                                <a class="dropdown-item" href="{{ url('dashboard/changepassword') }}">Change Password</a>
+                                <a class="dropdown-item" href="{{ url('dashboard/changepassword') }}">Change
+                                    Password</a>
                                 <a class="dropdown-item" href="{{ url('dashboard/profile') }}">Account Settings</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">
                                     Logout
-                                    </a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                    style="display: none;">
                                     {{ csrf_field() }}
-                                </form> 
+                                </form>
                             </li>
                         </div>
                     </ul>
@@ -136,18 +143,18 @@ if (Auth::user()->dashboard_style == "light") {
     <!-- End Navbar -->
 </div>
 <script type="text/javascript">
-    $("#styleform").on('change',function(){
-    $.ajax({
-        url: "{{url('/dashboard/changetheme')}}",
-        type: 'POST',
-        data:$("#styleform").serialize(),
-        success: function (data) {
-            location.reload(true);
-        },
-        error: function (data) {
-            console.log('Something went wrong');
-        },
+    $("#styleform").on('change', function() {
+        $.ajax({
+            url: "{{ url('/dashboard/changetheme') }}",
+            type: 'POST',
+            data: $("#styleform").serialize(),
+            success: function(data) {
+                location.reload(true);
+            },
+            error: function(data) {
+                console.log('Something went wrong');
+            },
 
+        });
     });
-});
 </script>

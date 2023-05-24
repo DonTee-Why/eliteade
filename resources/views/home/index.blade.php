@@ -9,7 +9,7 @@
             <div class="col-6 col-md-6 col-lg-6 col-sm-12 col-xs-12 col-xl-6">
                 <div class="hero-image">
                     <div class="hero-text">
-                        <h1>AscentMarkets</h1>
+                        <h1>Benzaten</h1>
                         <p>Invest Your Resources To Create Financial Freedom</p>
                     </div>
                 </div>
