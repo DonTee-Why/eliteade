@@ -14,8 +14,15 @@ class ChangeColumnsOnWithdrawalsTable extends Migration
      */
     public function up()
     {
-        DB::statement('ALTER TABLE withdrawals ALTER COLUMN amount TYPE integer USING (trim(amount))::integer');
-        DB::statement('ALTER TABLE withdrawals ALTER COLUMN to_deduct TYPE integer USING (trim(to_deduct))::integer');
+        if (DB::getDriverName() === 'pgsql') {
+            DB::statement('ALTER TABLE withdrawals ALTER COLUMN amount TYPE integer USING (trim(amount))::integer');
+            DB::statement('ALTER TABLE withdrawals ALTER COLUMN to_deduct TYPE integer USING (trim(to_deduct))::integer');
+        } else {
+            Schema::table('withdrawals', function (Blueprint $table) {
+                $table->integer('amount')->change();
+                $table->integer('to_deduct')->change();
+            });
+        }
     }
 
     /**

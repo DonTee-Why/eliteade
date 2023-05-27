@@ -14,8 +14,15 @@ class ChangeUserPlanColumnOnUsersTable extends Migration
      */
     public function up()
     {
-        DB::statement('ALTER TABLE users ALTER COLUMN user_plan TYPE bigint USING (trim(user_plan))::bigint');
-        DB::statement('ALTER TABLE users ALTER COLUMN plan TYPE bigint USING (trim(plan))::bigint');
+        if (DB::getDriverName() === 'pgsql') {
+            DB::statement('ALTER TABLE users ALTER COLUMN user_plan TYPE bigint USING (trim(user_plan))::bigint');
+            DB::statement('ALTER TABLE users ALTER COLUMN plan TYPE bigint USING (trim(plan))::bigint');
+        } else {
+            Schema::table('users', function (Blueprint $table) {
+                $table->bigInteger('user_plan')->change();
+                $table->bigInteger('plan')->change();
+            });
+        }
     }
 
     /**

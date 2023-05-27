@@ -89,10 +89,12 @@
                                 <h5 class="text-{{$text}} bg-{{$bg}}">Usdt Address</h5>
                                 <input type="text" name="usdt_address" value="{{$list->usdt_address}}"  class="form-control text-{{$text}} bg-{{$bg}}" placeholder="Usdt Address">
                             </div>
+                            <div class="form-group">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                <input type="submit" class="btn btn-{{$text}} mt-2" value="Add Wallet">
+                            </div>
                         </div>
                         {{-- <textarea placeholder="Type your message here" class="form-control bg-{{Auth('admin')->User()->dashboard_style}} text-{{$text}}" name="message" row="3" placeholder="Type your message here" required></textarea><br/> --}}
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <input type="submit" class="btn btn-{{$text}}" value="Add Wallet">
                     </form>
                 </div>
             </div>

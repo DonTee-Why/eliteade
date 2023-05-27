@@ -94,26 +94,26 @@ class UsersController extends Controller
         //   $favsrc='';
         // }
         //sum total deposited
-        $total_deposits = Deposit::query()->where('status', 'Processed')->sum('amount');
+        // $total_deposits = Deposit::query()->where('status', 'Processed')->sum('amount');
 
-        //sum total withdrawals
-        $total_withdrawals = Withdrawal::query()->where('status', 'Processed')->sum('amount');
+        // //sum total withdrawals
+        // $total_withdrawals = Withdrawal::query()->where('status', 'Processed')->sum('amount');
 
         return view('home.index')->with(array(
             'settings' => $settings,
-            'total_users' => User::count(),
-            'plans' => Plans::all(),
-            'total_deposits' => $total_deposits,
-            'total_withdrawals' => $total_withdrawals,
-            // 'logosrc' => $src,
-            // 'favsrc' => $favsrc,
-            'faqs' => Faq::orderby('id', 'desc')->get(),
-            'test' => Testimony::orderby('id', 'desc')->get(),
-            'withdrawals' => Withdrawal::orderby('id', 'DESC')->take(7)->get(),
-            'deposits' => Deposit::orderby('id', 'DESC')->take(7)->get(),
-            'title' => $settings->site_title,
-            'mplans' => Plans::where('type', 'Main')->get(),
-            'pplans' => Plans::where('type', 'Promo')->get(),
+            // 'total_users' => User::count(),
+            // 'plans' => Plans::all(),
+            // 'total_deposits' => $total_deposits,
+            // 'total_withdrawals' => $total_withdrawals,
+            // // 'logosrc' => $src,
+            // // 'favsrc' => $favsrc,
+            // 'faqs' => Faq::orderby('id', 'desc')->get(),
+            // 'test' => Testimony::orderby('id', 'desc')->get(),
+            // 'withdrawals' => Withdrawal::orderby('id', 'DESC')->take(7)->get(),
+            // 'deposits' => Deposit::orderby('id', 'DESC')->take(7)->get(),
+            // 'title' => $settings->site_title,
+            // 'mplans' => Plans::where('type', 'Main')->get(),
+            // 'pplans' => Plans::where('type', 'Promo')->get(),
         ));
     }
 
