@@ -134,7 +134,7 @@ if (_isNS('google.translate.Element')){return}(function(){var c=_setupNS('google
 			$(this).val( value);
 		});
 	</script>
-	 <script>
+	<script>
 		$(document).ready( function () {
 			$('#ShipTable').DataTable({
 				order: [ [0, 'desc'] ],
