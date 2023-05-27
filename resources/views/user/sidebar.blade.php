@@ -2,29 +2,18 @@
 
 <!-- Sidebar -->
 
-<div class="sidebar sidebar-style-2" data-background-color="{{$bg}}">
+<div class="sidebar sidebar-style-2" data-background-color="{{ $bg }}">
     <div class="sidebar-wrapper scrollbar scrollbar-inner">
         <div class="sidebar-content">
             <div class="user">
-                <div class="info">
-                    <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
-                        <span>
-                            {{ Auth::user()->name }}
-                            {{-- <span class="user-level">{{$settings->site_name }} User</span> --}}
-                            <span class="caret"></span>
-                        </span>
-                    </a>
-                    <div class="clearfix"></div>
-                    <div class="collapse in" id="collapseExample">
-                        {{-- <ul class="nav">Finves
-                            <li>
-                                <a href="{{ url('dashboard/profile') }}">
-                                    <span class="link-collapse">Account Settings</span>
-                                </a>
-                            </li>
-                        </ul> --}}
-                    </div>
-                </div>
+                <h4 class="font-weight-bold text-center text-{{ $text }}" aria-expanded="true">
+                    @if (Auth::user()->account_verify == 'Verified')
+                    {{ Auth::user()->name }} <i class="fas fa-check-circle text-primary"></i>
+                    @else
+                        {{ Auth::user()->name }}
+                    @endif
+                </h4>
+                <div class="clearfix"></div>
             </div>
             <ul class="nav nav-primary">
                 <li class="nav-item active">
@@ -98,7 +87,7 @@
                         </ul>
                     </div>
                 </li>
-                
+
                 <li class="nav-item">
                     <a data-toggle="collapse" href="#mpack">
                         <i class="fas fa-cubes"></i>
@@ -119,7 +108,7 @@
                             </li>
                         </ul>
                     </div>
-                </li>  
+                </li>
             </ul>
         </div>
     </div>

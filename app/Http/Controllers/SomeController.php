@@ -67,10 +67,8 @@ class SomeController extends Controller
     //Trading history route
     public function tradinghistory()
     {
-
         return view('user.thistory')
             ->with(array(
-
                 't_history' => Tp_Transaction::where('user', Auth::user()->id)
                     ->where('type', 'ROI')
                     ->orderBy('id', 'desc')

@@ -109,7 +109,7 @@ if (Auth::check() && Auth::user()->dashboard_style == "light") {
 <script type="text/javascript">
 		
 function googleTranslateElementInit() {
-new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, includedLanguages : 'en-GB,fr,es,no0%'}, 'google_translate_element');
 }
 
 (function(){var gtConstEvalStartTime = new Date();function d(b){var a=document.getElementsByTagName("head")[0];a||(a=document.body.parentNode.appendChild(document.createElement("head")));a.appendChild(b)}function _loadJs(b){var a=document.createElement("script");a.type="text/javascript";a.charset="UTF-8";a.src=b;d(a)}function _loadCss(b){var a=document.createElement("link");a.type="text/css";a.rel="stylesheet";a.charset="UTF-8";a.href=b;d(a)}function _isNS(b){b=b.split(".");for(var a=window,c=0;c<b.length;++c)if(!(a=a[b[c]]))return!1;return!0}
@@ -147,6 +147,7 @@ if (_isNS('google.translate.Element')){return}(function(){var c=_setupNS('google
 			
 			$(".dataTables_length select").addClass("bg-{{$bg}} text-{{$text}}");
 			$(".dataTables_filter input").addClass("bg-{{$bg}} text-{{$text}}");
+			$(".dataTables_length select").addClass("bg-{{$bg}} text-{{$text}}");
 		} );
 	</script>
 	<script>
@@ -155,7 +156,7 @@ if (_isNS('google.translate.Element')){return}(function(){var c=_setupNS('google
 				order: [ [0, 'desc'] ]
 			});
 			$(".dataTables_length select").addClass("bg-{{$bg}} text-{{$text}}");
-			$(".dataTables_filter input").addClass("bg-{{$bg}} text-{{$text}}");
+			$("tbody").addClass("overflow-auto");
 		} );
 	</script>
 	@stack('modals')

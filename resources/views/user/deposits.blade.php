@@ -45,7 +45,7 @@
 					@endif
 					<div class="row py-3 mb-4">
 						<div class="col">
-							<a class="btn btn-primary" target="_blank" href="{{route('make-deposit')}}"><i class="fa fa-plus"></i> New Deposit</a>
+							<a class="btn btn-primary" href="{{ url('dashboard/accountdetails') }}"><i class="fa fa-plus"></i> New Deposit</a>
 							{{-- <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#depositModal"><i class="fa fa-plus"></i> New deposit</a> --}}
 						</div>
 						<div class="col">

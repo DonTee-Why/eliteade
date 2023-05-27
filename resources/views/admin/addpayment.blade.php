@@ -60,10 +60,10 @@ if (Auth('admin')->User()->dashboard_style == "light") {
 									{{-- <h5 class="text-{{$text}}">Upload Payment proof after payment.</h5> --}}
 									<input type="file" name="image_name" class="form-control col-lg-4 bg-{{$bg}} text-{{$text}}">
 									<br>
-									<label for="amount">Company Name</label>
+									<label for="company" style="color: black !important;">Company Name</label>
 									<input type="text" name="company" class="form-control col-lg-4 bg-{{$bg}} text-{{$text}}"" required> 
 									<br>
-									<label for="amount">Company Link</label>
+									<label for="link" style="color: black !important;">Company Link</label>
 									<input type="text" name="link" class="form-control col-lg-4 bg-{{$bg}} text-{{$text}}"" required> 
 									<br>
 									<div >

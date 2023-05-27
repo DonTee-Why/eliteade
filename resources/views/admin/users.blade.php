@@ -1,8 +1,10 @@
 <?php
 if (Auth('admin')->User()->dashboard_style == "light") {
     $text = "dark";
+	$bg = "light";
 } else {
     $text = "light";
+	$bg = "dark";
 }
 ?>
 @extends('layouts.app')
@@ -38,7 +40,7 @@ if (Auth('admin')->User()->dashboard_style == "light") {
 						</div>
 					</div>
 					@endif
-					<div class="row">
+					<div class="row mb-3">
 						<div class="col">
 							{{-- <a href="#" data-toggle="modal" data-target="#sendmailModal" class="btn btn-primary btn-lg" style="margin:10px;">Message all</a> --}}
 							{{-- @if($settings->enable_kyc =="yes") --}}
@@ -84,7 +86,7 @@ if (Auth('admin')->User()->dashboard_style == "light") {
 											<td>{{$list->phone}}</td>
 											@endif
 											
-											<td><a class="m-1 btn btn-warning btn-sm" href="{{ url('admin/dashboard/user-plans') }}/{{$list->id}}">Inv. plans</a></td>
+											<td><a class="btn btn-warning btn-sm" href="{{ url('admin/dashboard/user-plans') }}/{{$list->id}}">Inv. plans</a></td>
 											<td>{{$list->status}}</td> 
 											<td>{{$list->country}}</td>
 											<td>{{\Carbon\Carbon::parse($list->created_at)->toDayDateTimeString()}}</td> 

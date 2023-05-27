@@ -33,6 +33,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Mail\NewNotification;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Redirect;
 
 class UsersController extends Controller
 {
@@ -40,6 +41,9 @@ class UsersController extends Controller
 
     public function index()
     {
+        if (Auth::check()) {
+            Redirect::route('dashboard');
+        }
         $settings = Settings::where('id', '=', '1')->first();
         //   $logoname = $settings->logo;
         //   $favicon = $settings->favicon;

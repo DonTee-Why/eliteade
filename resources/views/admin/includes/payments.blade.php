@@ -6,10 +6,20 @@
 	<div class="panel panel-default">
 		<!-- Panel Heading Starts -->
         <div class="panel-heading">
-            <h4 class="panel-title">
+            <div class="panel-body row align-items-center">
+                <h4>{{$method->name}}</h4>
+                <div class="sign-u ml-3">
+                    <a class="btn btn-{{$text}} btn-sm" href="#" data-toggle="modal" data-target="#wmethodModal{{$method->id}}"><i class="fa fa-pencil"></i> Edit</a> &nbsp;
+                    <a class="btn btn-danger btn-sm" href="{{url('admin/dashboard/deletewdmethod')}}/{{$method->id}}"><i class="fa fa-trash"></i></a> 
+                </div>
+                {{-- <br>
                 <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#method{{$method->id}}">
-                {{$method->name}} <i class="fa fa-arrow-down"></i> </a>
-            </h4>
+                {{$method->name}} <i class="fa fa-arrow-down"></i> </a><div class="sign-u">
+                    <br/>
+                    <a class="btn btn-{{$text}} btn-sm" href="#" data-toggle="modal" data-target="#wmethodModal{{$method->id}}"><i class="fa fa-pencil"></i> Edit</a> &nbsp;
+                    <a class="btn btn-danger btn-sm" href="{{url('admin/dashboard/deletewdmethod')}}/{{$method->id}}"><i class="fa fa-trash"></i></a> 
+                </div> --}}
+            </div>
         </div>
 											
         <div id="method{{$method->id}}" class="panel-collapse collapse">
@@ -20,6 +30,7 @@
             </div>
         </div>
 	</div>
+    <br>
 									
     <!-- Edit Withdrawal method Modal -->
     <div id="wmethodModal{{$method->id}}" class="modal fade" role="dialog">

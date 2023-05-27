@@ -78,7 +78,7 @@
                         <input type="hidden" name="user_id" value="{{$list->id}}">
                         <div class="card-body bg-{{$bg}} shadow">
                             <div class="form-group">
-                                <h5 class="text-{{$text}}">BTC ADDRESS</h5>
+                                <h5 class="text-{{$text}}">BTC ADDRESS {{ $bg }}</h5>
                                 <input type="text" name="btc_address" value="{{$list->btc_address}}"  class="form-control text-{{$text}} bg-{{$bg}}" placeholder="">
                             </div>
                             <div class="form-group">
@@ -163,8 +163,26 @@
                             @endforeach
                             </select>
                         </div>
-                        <h5 class=" text-{{$text}}">Amount</h5>
-                        <input type="number" name="amount" class="form-control bg-{{Auth('admin')->User()->dashboard_style}} text-{{$text}}">
+                        <div class="form-group">
+                            <h5 class=" text-{{$text}}">Amount</h5>
+                            <input type="number" name="amount" class="form-control bg-{{Auth('admin')->User()->dashboard_style}} text-{{$text}}">
+                        </div>
+                        <div class="form-group">
+                            <h5 class=" text-{{$text}}">Open Rate</h5>
+                            <input type="number" name="open_rate" class="form-control bg-{{Auth('admin')->User()->dashboard_style}} text-{{$text}}">
+                        </div>
+                        <div class="form-group">
+                            <h5 class=" text-{{$text}}">Closed Rate</h5>
+                            <input type="number" name="closed_rate" class="form-control bg-{{Auth('admin')->User()->dashboard_style}} text-{{$text}}">
+                        </div>
+                        <div class="form-group">
+                            <h5 class=" text-{{$text}}">Roll Over</h5>
+                            <input type="number" name="roll_over" class="form-control bg-{{Auth('admin')->User()->dashboard_style}} text-{{$text}}">
+                        </div>
+                        <div class="form-group">
+                            <h5 class=" text-{{$text}}">Profit</h5>
+                            <input type="number" name="profit" class="form-control bg-{{Auth('admin')->User()->dashboard_style}} text-{{$text}}">
+                        </div>
                         <div class="form-group">
                             <h5 class=" text-{{$text}}">Type</h5>
                             <select class="form-control bg-{{Auth('admin')->User()->dashboard_style}} text-{{$text}}" name="type">

@@ -68,7 +68,7 @@ class HomeController extends Controller
         $activeusers = User::where('status', 'active')->count();
         $blockeusers = User::where('status', 'blocked')->count();
         $plans = Plans::count();
-        $unverifiedusers = User::where('account_verify', '!=', 'yes')->count();
+        $unverifiedusers = User::where('account_verify', '!=', 'verified')->count();
 
         return view('admin.dashboard', [
             'title' => 'Admin Dashboard',

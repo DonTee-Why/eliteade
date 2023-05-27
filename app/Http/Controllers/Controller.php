@@ -168,6 +168,10 @@ class Controller extends BaseController
                 //'earnings'=>$earnings,
                 'title' => 'User panel',
                 // 'ref_earnings' => $ref_earnings,
+                't_history' => Tp_Transaction::where('user', Auth::user()->id)
+                    ->where('type', 'ROI')
+                    ->orderBy('id', 'desc')
+                    ->get(),
                 'plan' => $plan_name,
                 'deposited' => $total_deposited,
                 'total_bonus' => $total_bonus,
@@ -455,7 +459,7 @@ class Controller extends BaseController
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now(),
         ]);
-        
+
         User::where('id', Auth::user()->id)
             ->update([
                 'plan' => $plan->id,

@@ -179,3 +179,7 @@
 .red .price-button:hover {
     background: #f23c3c;
 }
+
+.overflow-auto {
+    overflow: auto;
+}

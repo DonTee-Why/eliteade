@@ -3,10 +3,13 @@ if (Auth::user()->dashboard_style == 'light') {
     $bgmenu = 'blue';
     $bg = 'light';
     $text = 'dark';
+    $mode = $status = $bg;
 } else {
     $bgmenu = 'dark';
     $bg = 'dark';
     $text = 'light';
+    $mode = $text;
+    $status = 'secondary';
 }
 
 ?>
@@ -36,10 +39,40 @@ if (Auth::user()->dashboard_style == 'light') {
 
         <div class="container-fluid">
             <ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
+                <li class="nav-item dropdown hidden-caret">
+                    @if (Auth::user()->account_verify == 'Verified')
+                        <p class="m-0 text-{{ $status }}">
+                            <i class="glyphicon glyphicon-ok"></i><strong style=""> Account verified</strong>
+                        </p>
+                    @elseif (Auth::user()->account_verify == 'Under review')
+                        <p class="m-0 text-{{ $status }}">
+                            <i class="glyphicon glyphicon-ok"></i><strong style=""> Account under review</strong>
+                        </p>
+                    @else
+                        <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false">
+                            <strong style="">Account {{ Auth::user()->account_verify }}</strong>
+                        </a>
+                    @endif
+                    @if (Auth::user()->account_verify != 'Verified' && Auth::user()->account_verify != 'Under review')
+                        <div class="dropdown-menu quick-actions quick-actions-info animated fadeIn">
+                            <div class="quick-actions-scroll scrollbar-outer">
+                                <div class="quick-actions-items">
+                                    <span class="mb-1 title">Verification status: {{ Auth::user()->account_verify }}</span>
+                                    <div class="m-0 row">
+                                        @if (Auth::user()->account_verify != 'yes')
+                                            <a href="{{ route('account.verify') }}" class="btn btn-success">Verify Account</a>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+                </li>
                 <li class="nav-item hidden-caret">
                     <form action="javascript:void(0)" method="post" id="styleform" class="form-inline">
                         <div class="form-group">
-                            <label class="style_switch">
+                            {{-- <label class="text-{{ $mode }}">Background Mode</label> --}}
+                            <label class="style_switch ml-2">
                                 <input name="style" id="style" type="checkbox" value="true" class="modes">
                                 <span class="slider round"></span>
                             </label>
@@ -84,34 +117,6 @@ if (Auth::user()->dashboard_style == 'light') {
                     </ul>
                 </li> --}}
                 {{-- @if ($settings->enable_kyc == 'yes') --}}
-                <li class="nav-item dropdown hidden-caret">
-                    <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false">
-                        <i class="fas fa-layer-group"></i><strong style="font-size:8px;">KYC</strong>
-                    </a>
-                    <div class="dropdown-menu quick-actions quick-actions-info animated fadeIn">
-                        <div class="quick-actions-header">
-                            <span class="mb-1 title">KYC verification</span>
-                            @if (Auth::user()->account_verify == 'yes')
-                                <span class="subtitle op-8">
-                                    <a href="#" class="p-0 col-12"><i class="glyphicon glyphicon-ok"></i> KYC
-                                        status: Account verified</a>
-                                </span>
-                            @else
-                                <span class="subtitle op-8"><a>KYC status: {{ Auth::user()->account_verify }}</a></span>
-                            @endif
-                        </div>
-                        <div class="quick-actions-scroll scrollbar-outer">
-                            <div class="quick-actions-items">
-                                <div class="m-0 row">
-                                    @if (Auth::user()->account_verify != 'yes')
-                                        <a href="{{ route('account.verify') }}" class="btn btn-success">Verify Account
-                                        </a>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
                 {{-- @endif --}}
                 <li class="nav-item dropdown hidden-caret">
                     <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false">
