@@ -17,7 +17,7 @@ if (Auth::user()->dashboard_style == 'light') {
     <!-- Logo Header -->
     <div class="logo-header" data-background-color="{{ $bgmenu }}">
         <a href="{{ url('/') }}"><img class="img-fluid" style="max-height: 50px"
-                src="{{ Storage::url('uploads/' . $settings->logo) }}" alt="{{ $settings->site_name }}"> </a>
+                src="{{ asset('img/logo-color-no-background.png') }}" alt="{{ $settings->site_name }}"> </a>
 
         <button class="ml-auto navbar-toggler sidenav-toggler" type="button" data-toggle="collapse"
             data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">

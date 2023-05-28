@@ -11,8 +11,7 @@
         rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.1/dist/alpine.min.js" defer></script>
     <!-- Bootstrap CSS File -->
-    <link href="{{ asset('assets/lib/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-
+    
     <!-- Libraries CSS Files -->
     <link href="{{ asset('assets/lib/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/lib/animate/animate.min.css') }}" rel="stylesheet">
@@ -24,6 +23,7 @@
     <link href="{{ asset('assets/lib/venobox/venobox.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/lib/icofont/icofont.min.css') }}" rel="stylesheet">
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <link href="{{ asset('assets/lib/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
 
     <!-- JavaScript Libraries -->

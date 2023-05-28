@@ -8,17 +8,17 @@
                 <div class="col-12 col-md-6 col-lg-6 col-sm-10 col-xl-6 ">
                     <div class="mb-4 text-center">
                         <a href="{{ url('/') }}">
-                            <img class="auth__logo img-fluid" src="{{ Storage::url('uploads/' . $settings->logo) }}"
+                            <img class="auth__logo img-fluid" src="{{ asset('img/logo-color-no-background.png') }}"
                                 alt="{{ $settings->site_name }}">
                         </a>
 
                         @if (Session::has('message'))
-                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
                                 {{ Session::get('message') }}
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
-                            </div>
+                            </div><br>
                         @endif
 
                     </div>
@@ -29,24 +29,24 @@
                             {{ csrf_field() }}
 
                             <div class="form-group">
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
                                 <label for="email">Email address</label>
                                 <input type="email" class="form-control" name="email" value="{{ old('email') }}"
                                     id="email" placeholder="name@example.com" required>
+                                @if ($errors->has('email'))
+                                    <span class="help-block text-danger">
+                                        {{ $errors->first('email') }}
+                                    </span><br>
+                                @endif
                             </div>
                             <div class="form-group">
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
                                 <label for="password">Password</label>
                                 <input type="password" class="form-control" name="password" id="password"
                                     placeholder="Enter Password" required>
+                                @if ($errors->has('password'))
+                                    <span class="help-block text-danger">
+                                        {{ $errors->first('password') }}
+                                    </span><br>
+                                @endif
                             </div>
 
                             <div class="form-group">

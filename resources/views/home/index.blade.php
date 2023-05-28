@@ -5,18 +5,24 @@
     {{-- <section class="auth"> --}}
     <div class="container">
         <div class="row justify-content-center user-auth">
-            {{-- <div class="col-6"> --}}
             <div class="col-6 col-md-6 col-lg-6 col-sm-12 col-xs-12 col-xl-6">
-                <div class="hero-image">
-                    <div class="hero-text">
-                        <h1>Benzaten</h1>
-                        <p>Invest Your Resources To Create Financial Freedom</p>
-                    </div>
+                <div class="mb-4 text-center">
+                    <a href="{{ url('/') }}">
+                        <img class="auth__logo img-fluid" src="{{ asset('img/logo-color-no-background.png') }}"
+                            alt="{{ $settings->site_name }}">
+                    </a>
+
+                    @if (Session::has('message'))
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            {{ Session::get('message') }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div><br>
+                    @endif
+
                 </div>
-            </div>
-            {{-- <div class="col-6"> --}}
-            <div class="col-6 col-md-6 col-lg-6 col-sm-12 col-xs-12 col-xl-6">
-                <div class="login-box">
+                <div class="login-box bg-light">
                     <div class="login-snip p-5">
                         <input id="tab-1" type="radio" name="tab" class="sign-in" checked>
                         <label for="tab-1" class="tab">Login</label>
@@ -27,15 +33,17 @@
                                 @csrf
                                 <div class="login">
                                     <div class="group"> <label for="email" class="label">Email Address</label>
-                                        <input id="email" name="email" type="text" class="input"
+                                        <input id="email" name="email" type="text" class="input form-control"
                                             placeholder="Enter your email address"> </div>
                                     <div class="group"> <label for="password" class="label">Password</label> <input
-                                            id="password" type="password" name="password" class="input"
+                                            id="password" type="password" name="password" class="input form-control"
                                             data-type="password" placeholder="Enter your password"> </div>
                                     <div class="group"> <input id="check" type="checkbox" class="check" checked>
                                         <label for="check"><span class="icon"></span> Keep me Signed in</label>
                                     </div>
-                                    <div class="group"> <input type="submit" class="button" value="Login"> </div>
+                                    <div class="group"> 
+                                        <input type="submit" class="button btn btn-primary" value="Login"> 
+                                    </div>
                                     <div class="hr"></div>
                                     <div class="foot"> <a href="{{ route('password.request') }}">Forgot Password?</a>
                                     </div>
@@ -51,8 +59,8 @@
                                             </span>
                                         @endif
                                         <label for="user" class="label">Full Name</label> <input id="name"
-                                            name="name" type="text" class="input"
-                                            placeholder="Create your Username">
+                                            name="name" type="text" class="input form-control"
+                                            placeholder="Enter your Username">
                                     </div>
                                     <div class="group">
                                         @if ($errors->has('email'))
@@ -61,7 +69,7 @@
                                             </span>
                                         @endif
                                         <label for="pass" class="label">Email Address</label> <input id="email"
-                                            name="email" type="text" class="input"
+                                            name="email" type="text" class="input form-control"
                                             placeholder="Enter your email address">
                                     </div>
                                     <div class="group ">
@@ -71,7 +79,7 @@
                                             </span>
                                         @endif
                                         <label for="phone" class="label">Phone Number</label>
-                                        <input type="mumber" class="input" name="phone" value="{{ old('phone') }}"
+                                        <input type="mumber" class="input form-control" name="phone" value="{{ old('phone') }}"
                                             id="phone" placeholder="Enter Phone number">
                                     </div>
                                     <div class="form-row">
@@ -82,21 +90,21 @@
                                         @endif
                                         <div class="group col-md-6">
                                             <label for="password " class="label">Password</label>
-                                            <input type="password" class="input" name="password" id="password"
+                                            <input type="password" class="input form-control" name="password" id="password"
                                                 placeholder="Enter Password">
                                         </div>
                                         <div class="group col-md-6">
                                             <label for="confirm-password" class="label">Confirm Password</label>
-                                            <input type="password" class="input" name="password_confirmation"
+                                            <input type="password" class="input form-control" name="password_confirmation"
                                                 value="{{ old('password_confirmation') }}" id="confirm-password"
                                                 placeholder="Confirm Password">
                                         </div>
 
 
                                     </div>
-                                    <div class="group col-md-12">
+                                    <div class="group">
                                         <label for="country" name="country">Country</label>
-                                        <select class="input" name="country" id="country" style=color:grey
+                                        <select class="input form-control" name="country" id="country" style=color:grey
                                             required>
                                             <option selected disabled>Choose Country</option>
                                             <option value="Afganistan">Afghanistan</option>
@@ -349,7 +357,7 @@
                                             <option value="Zimbabwe">Zimbabwe</option>
                                         </select>
                                     </div>
-                                    <div class="group"> <input type="submit" class="button" value="Sign Up">
+                                    <div class="group"> <input type="submit" class="button btn btn-primary" value="Sign Up">
                                     </div>
                                 </div>
                             </form>
