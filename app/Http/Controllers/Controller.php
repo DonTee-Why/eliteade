@@ -173,8 +173,8 @@ class Controller extends BaseController
                     ->orderBy('id', 'desc')
                     ->get(),
                 'plan' => $plan_name,
-                'deposited' => $total_deposited,
-                'total_bonus' => $total_bonus,
+                'deposited' => $total_deposited ?? '0.00',
+                'total_bonus' => $total_bonus->bonus,
                 'user_plan' => $user_plan,
                 'user_plan_active' => $user_plan_active,
                 'upplan' => Plans::where('id', Auth::user()->promo_plan)->first(),

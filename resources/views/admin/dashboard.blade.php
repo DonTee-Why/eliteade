@@ -57,13 +57,9 @@ if (Auth('admin')->User()->dashboard_style == "light") {
                                     <div class="col-7 col-stats">
                                         <div class="numbers">
                                             <p class="card-category">Total Deposit</p>
-                                            @foreach($total_deposited as $deposited)
-                                            @if(!empty($deposited->count))
-                                            {{$settings->currency}}{{$deposited->count}}
-                                            @else
-                                            {{$settings->currency}}0.00
-                                            @endif
-                                            @endforeach
+                                            <h4 class="card-title text-{{$text}}">
+                                                {{ $settings->currency }}{{ number_format($total_deposited, 2, '.', ',') }}
+                                            </h4>
                                         </div>
                                     </div>
                                 </div>
@@ -82,13 +78,9 @@ if (Auth('admin')->User()->dashboard_style == "light") {
                                     <div class="col-7 col-stats">
                                         <div class="numbers">
                                             <p class="card-category">Pending Deposit(s)</p>
-                                            @foreach($pending_deposited as $deposited)
-                                            @if(!empty($deposited->count))
-                                            {{$settings->currency}}{{$deposited->count}}
-                                            @else
-                                            {{$settings->currency}}0.00
-                                            @endif
-                                            @endforeach
+                                            <h4 class="card-title text-{{$text}}">
+                                                {{ $settings->currency }}{{ number_format($pending_deposited, 2, '.', ',') }}
+                                            </h4>
                                         </div>
                                     </div>
                                 </div>
@@ -107,13 +99,9 @@ if (Auth('admin')->User()->dashboard_style == "light") {
                                     <div class="col-7 col-stats">
                                         <div class="numbers">
                                             <p class="card-category">Total Withdrawal</p>
-                                            @foreach($total_withdrawn as $deposited)
-                                            @if(!empty($deposited->count))
-                                            {{$settings->currency}}{{$deposited->count}}
-                                            @else
-                                            {{$settings->currency}}0.00
-                                            @endif
-                                            @endforeach
+                                            <h4 class="card-title text-{{$text}}">
+                                                {{ $settings->currency }}{{ number_format($total_withdrawn, 2, '.', ',') }}
+                                            </h4>
                                         </div>
                                     </div>
                                 </div>
@@ -132,13 +120,9 @@ if (Auth('admin')->User()->dashboard_style == "light") {
                                     <div class="col-7 col-stats">
                                         <div class="numbers">
                                             <p class="card-category">Pending Withdrawal</p>
-                                            @foreach($pending_withdrawn as $deposited)
-                                            @if(!empty($deposited->count))
-                                            {{$settings->currency}}{{$deposited->count}}
-                                            @else
-                                            {{$settings->currency}}0.00
-                                            @endif
-                                            @endforeach
+                                            <h4 class="card-title text-{{$text}}">
+                                                {{ $settings->currency }}{{ number_format($pending_withdrawn, 2, '.', ',') }}
+                                            </h4>
                                         </div>
                                     </div>
                                 </div>
