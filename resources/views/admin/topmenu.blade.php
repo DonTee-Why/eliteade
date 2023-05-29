@@ -1,22 +1,23 @@
 <?php
-if (Auth('admin')->User()->dashboard_style == "light") {
-    $bgmenu="blue";
-    $bg="light";
-    $text = "dark";
+if (Auth('admin')->User()->dashboard_style == 'light') {
+    $bgmenu = 'blue';
+    $bg = 'light';
+    $text = 'dark';
 } else {
-    $bgmenu="dark";
-    $bg="dark";
-    $text = "light";
+    $bgmenu = 'dark';
+    $bg = 'dark';
+    $text = 'light';
 }
 
 ?>
 <div class="main-header">
     <!-- Logo Header -->
-<div class="logo-header" data-background-color="{{$bgmenu}}">
-    <a href="{{url('/')}}" ><img class="img-fluid" style="max-height: 50px;"
-        src="{{Storage::url('uploads/'.$settings->logo)}}" alt="{{$settings->site_name}}"> </a>
+    <div class="logo-header" data-background-color="{{ $bgmenu }}">
+        <a href="{{ url('/') }}"><img class="img-fluid" style="max-height: 50px;"
+                src="{{ asset('img/logo-color-no-background.png') }}" alt="{{ $settings->site_name }}"> </a>
 
-    <button class="ml-auto navbar-toggler sidenav-toggler" type="button" data-toggle="collapse" data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="ml-auto navbar-toggler sidenav-toggler" type="button" data-toggle="collapse"
+            data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon">
                 <i class="icon-menu "></i>
             </span>
@@ -27,52 +28,56 @@ if (Auth('admin')->User()->dashboard_style == "light") {
                 <i class="icon-menu "></i>
             </button>
         </div>
-        
+
     </div>
     <!-- End Logo Header -->
 
     <!-- Navbar Header -->
-    <nav class="navbar navbar-header navbar-expand-lg" data-background-color="{{$bgmenu}}">
-        
+    <nav class="navbar navbar-header navbar-expand-lg" data-background-color="{{ $bgmenu }}">
+
         <div class="container-fluid">
             <ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
                 <li>
-                <form action="javascript:void(0)" method="post" id="styleform">
+                    <form action="javascript:void(0)" method="post" id="styleform">
                         <div class="form-group">
                             <label class="style_switch">
                                 <input name="style" id="style" type="checkbox" value="true" class="modes">
                                 <span class="slider round"></span>
                             </label>
-                        </div> 
-                        @if(Auth('admin')->User()->dashboard_style =='dark')
-                        <script>document.getElementById("style").checked= true;</script>
-                         @endif
+                        </div>
+                        @if (Auth('admin')->User()->dashboard_style == 'dark')
+                            <script>
+                                document.getElementById("style").checked = true;
+                            </script>
+                        @endif
 
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     </form>
-                    
+
                 </li>
-                @if($settings->google_translate =='on')
-                <li class="nav-item dropdown hidden-caret">
-                    <div id="google_translate_element"></div>
-                </li>
+                @if ($settings->google_translate == 'on')
+                    <li class="nav-item dropdown hidden-caret">
+                        <div id="google_translate_element"></div>
+                    </li>
                 @endif
                 <li class="nav-item dropdown hidden-caret">
                     <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false">
-                    <i class="text-white fas fa-user"></i>
+                        <i class="text-white fas fa-user"></i>
                     </a>
-                   
+
                     <ul class="dropdown-menu dropdown-user animated fadeIn">
                         <div class="dropdown-user-scroll scrollbar-outer">
                             <li>
-                                <a class="dropdown-item" href="{{ url('admin/dashboard/adminchangepassword') }}">Change Password</a>
+                                <a class="dropdown-item" href="{{ url('admin/dashboard/adminchangepassword') }}">Change
+                                    Password</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ route('adminlogout') }}"
-                                onclick="event.preventDefault();
+                                    onclick="event.preventDefault();
                                 document.getElementById('logoutform').submit();">
-                                Logout
+                                    Logout
                                 </a>
-                                <form id="logoutform" action="{{ route('adminlogout') }}" method="POST" style="display: none;">
+                                <form id="logoutform" action="{{ route('adminlogout') }}" method="POST"
+                                    style="display: none;">
                                     {{ csrf_field() }}
                                 </form>
                             </li>
@@ -88,15 +93,15 @@ if (Auth('admin')->User()->dashboard_style == "light") {
 
 <script type="text/javascript">
     //create investment
-        $("#styleform").on('change',function(){
+    $("#styleform").on('change', function() {
         $.ajax({
-            url: "{{url('admin/dashboard/changestyle')}}",
+            url: "{{ url('admin/dashboard/changestyle') }}",
             type: 'POST',
-            data:$("#styleform").serialize(),
-            success: function (data) {
-				location.reload(true);
+            data: $("#styleform").serialize(),
+            success: function(data) {
+                location.reload(true);
             },
-            error: function (data) {
+            error: function(data) {
                 console.log('Something went wrong');
             },
 
