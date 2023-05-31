@@ -5,7 +5,7 @@
     {{-- <section class="auth"> --}}
     <div class="container">
         <div class="row justify-content-center user-auth">
-            <div class="col-6 col-md-6 col-lg-6 col-sm-12 col-xs-12 col-xl-6">
+            <div class="col-12 col-md-6 col-lg-6 col-sm-12 col-xs-12 col-xl-6">
                 <div class="mb-4 text-center">
                     <a href="{{ url('/') }}">
                         <img class="auth__logo img-fluid" src="{{ asset('img/logo-color-no-background.png') }}"
