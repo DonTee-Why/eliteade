@@ -32,17 +32,22 @@
                             <form method="POST" action="{{ route('login') }}" class="mt-5 card__form">
                                 @csrf
                                 <div class="login">
-                                    <div class="group"> <label for="email" class="label">Email Address</label>
+                                    <div class="group">
+                                        <label for="email" class="label">Email Address</label>
                                         <input id="email" name="email" type="text" class="input form-control"
-                                            placeholder="Enter your email address"> </div>
-                                    <div class="group"> <label for="password" class="label">Password</label> <input
-                                            id="password" type="password" name="password" class="input form-control"
-                                            data-type="password" placeholder="Enter your password"> </div>
-                                    <div class="group"> <input id="check" type="checkbox" class="check" checked>
+                                            required placeholder="Enter your email address">
+                                    </div>
+                                    <div class="group">
+                                        <label for="password" class="label">Password</label>
+                                        <input id="password" type="password" name="password" class="input form-control"
+                                            data-type="password" placeholder="Enter your password">
+                                    </div>
+                                    <div class="group">
+                                        <input id="check" type="checkbox" class="check" required checked>
                                         <label for="check"><span class="icon"></span> Keep me Signed in</label>
                                     </div>
-                                    <div class="group"> 
-                                        <input type="submit" class="button btn btn-primary" value="Login"> 
+                                    <div class="group">
+                                        <input type="submit" class="button btn btn-primary" value="Login">
                                     </div>
                                     <div class="hr"></div>
                                     <div class="foot"> <a href="{{ route('password.request') }}">Forgot Password?</a>
@@ -69,7 +74,7 @@
                                             </span>
                                         @endif
                                         <label for="pass" class="label">Email Address</label> <input id="email"
-                                            name="email" type="text" class="input form-control"
+                                            required name="email" type="text" class="input form-control"
                                             placeholder="Enter your email address">
                                     </div>
                                     <div class="group ">
@@ -79,8 +84,9 @@
                                             </span>
                                         @endif
                                         <label for="phone" class="label">Phone Number</label>
-                                        <input type="mumber" class="input form-control" name="phone" value="{{ old('phone') }}"
-                                            id="phone" placeholder="Enter Phone number">
+                                        <input type="mumber" class="input form-control" name="phone"
+                                            value="{{ old('phone') }}" id="phone" required
+                                            placeholder="Enter Phone number">
                                     </div>
                                     <div class="form-row">
                                         @if ($errors->has('password'))
@@ -90,22 +96,23 @@
                                         @endif
                                         <div class="group col-md-6">
                                             <label for="password " class="label">Password</label>
-                                            <input type="password" class="input form-control" name="password" id="password"
-                                                placeholder="Enter Password">
+                                            <input type="password" class="input form-control" name="password"
+                                                required id="password" placeholder="Enter Password">
                                         </div>
                                         <div class="group col-md-6">
                                             <label for="confirm-password" class="label">Confirm Password</label>
-                                            <input type="password" class="input form-control" name="password_confirmation"
+                                            <input type="password" class="input form-control"
+                                                name="password_confirmation"
                                                 value="{{ old('password_confirmation') }}" id="confirm-password"
-                                                placeholder="Confirm Password">
+                                                required placeholder="Confirm Password">
                                         </div>
 
 
                                     </div>
                                     <div class="group">
                                         <label for="country" name="country">Country</label>
-                                        <select class="input form-control" name="country" id="country" style=color:grey
-                                            required>
+                                        <select class="input form-control" name="country" id="country"
+                                            style=color:grey required>
                                             <option selected disabled>Choose Country</option>
                                             <option value="Afganistan">Afghanistan</option>
                                             <option value="Albania">Albania</option>
@@ -357,7 +364,8 @@
                                             <option value="Zimbabwe">Zimbabwe</option>
                                         </select>
                                     </div>
-                                    <div class="group"> <input type="submit" class="button btn btn-primary" value="Sign Up">
+                                    <div class="group"> <input type="submit" class="button btn btn-primary"
+                                            value="Sign Up">
                                     </div>
                                 </div>
                             </form>
